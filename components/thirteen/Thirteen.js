@@ -1,17 +1,32 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
 
 export default function Thirteen({ navigation }) {
 
-  const handleButtonPress = () => {
+    const [restaurante, setRestaurante] = useState([]);
+    useEffect(() => {
+        async function apires() {
+          try {
+            const resta1 = await axios.get('http://10.0.2.2:8000/api/restaurante');
+          console.log("hola");
+          setRestaurante(resta1.data);
+         console.log(restaurante);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        apires()
+    }, []);
 
-    console.log('Botón presionado');
-  };
+  
 
   const goToFifteen = () => {
     navigation.navigate('Quince');
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -29,18 +44,31 @@ export default function Thirteen({ navigation }) {
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
       </View>
+      
       <View style={styles.imagenmikeContainer}>
         <Image source={require('../../assets/centroscomerciales.png')} style={styles.imagen} resizeMode="stretch" />
 
         <Image source={require('../../assets/pizza1.png')} style={styles.imagen1} resizeMode="stretch" />
-        <Text style={styles.subTitle}>Selecciona el restaurante</Text>
-        <Image source={require('../../assets/kfc.png')} style={styles.imagen2} resizeMode="stretch" />
-      </View>
-
+        <Text style={styles.subTitle}>Selecciona el restaurante mike yidwar</Text>
+        </View>
+      <ScrollView>
+      <View style={styles.cardContainer}>
+        {restaurante.map((item) => (
+        <TouchableOpacity style={styles.card} key={item.id}>
+        <Image source={{ uri: item.foto_baner }} style={styles.cardImage} />
+        <Text style={styles.cardText}>{item.nombre_restaurante}</Text>
+        <Text style={styles.cardText}>Horario: {item.horario}</Text>
+        </TouchableOpacity>
+        ))}
+        </View>
+        </ScrollView>
       <View style={{ marginTop: -50, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToFifteen} />
+        
       </View>
+      
     </View>
+    
   );
 }
 
@@ -81,12 +109,12 @@ const styles = StyleSheet.create({
 
   imagen: {
     width: '100%',
-    height: '28%',
+    height: '50%',
     resizeMode: 'contain',
   },
   imagen1: {
     width: '100%',
-    height: '15%',
+    height: '35%',
     resizeMode: 'contain',
   },
   imagen2: {
@@ -117,7 +145,33 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#000',
     marginLeft: 20,
-    marginBottom: 10,
+    marginBottom: -300,
 
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  card: {
+    width: '30%',
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    marginBottom: 10,
+  },
+  cardImage: {
+    width: '100%',
+    height: 100,
+    resizeMode: 'cover',
+    marginBottom: 10,
+  },
+  cardText: {
+    fontSize: 14,
+    marginBottom: 5,
   },
 });

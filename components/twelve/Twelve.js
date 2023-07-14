@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpa
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
 
 export default function Twelve({ navigation }) {
 
@@ -51,43 +52,34 @@ export default function Twelve({ navigation }) {
         <Image source={require('../../assets/cocacola.png')} style={styles.imagen} resizeMode="stretch" />
         <Text style={styles.subTitle}>Selecciona tu combo preferido</Text>
         <Image source={require('../../assets/corral1.png')} style={styles.imagen1} resizeMode="stretch" />
-        <Text style={styles.subTitle}>Conoce los mejores centros comerciales de Barranquilla</Text>
-        <View style={styles.container}>
-    <View style={styles.table}>
+        <Text style={styles.subTitle}>Conoce los mejores centros mike comerciales de Barranquilla</Text>
         
-        <View style={styles.headerRow}>
-          <Text style={styles.headerCell}>Nombre Centro Comercial</Text>
-          <Text style={styles.headerCell}>Direccion</Text>
-          <Text style={styles.headerCell}>Telefono</Text>
-          <Text style={styles.headerCell}>Correo</Text>
-          <Text style={styles.headerCell}>Ubicacion</Text>
-          
-        </View>
-
-       
+        <ScrollView>
+        <View style={styles.cardContainer}>
+        
         {menu.map((item) => (
-          <View style={styles.row} key={item.id}>
-            <Text style={styles.cell}>{item.nombre_centro_comercial}</Text>
-            <Text style={styles.cell}>{item.direccion}</Text>
-            <Text style={styles.cell}>{item.telefono}</Text>
-            <Text style={styles.cell}>{item.correo}</Text>
-            <Text style={styles.cell}>{item.ubicacion}</Text>
-           
-          </View>
+          <TouchableOpacity style={styles.card} key={item.id}>
+            <Image source={{ uri:item.imagen }} style={styles.cardImage} />
+            <Text style={styles.cardText}>{item.nombre_centro_comercial}</Text>
+            <Text style={styles.cardText}>{item.direccion}</Text>
+            <Text style={styles.cardText}>{item.ubicacion}</Text>
+          </TouchableOpacity>
         ))}
-        <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
-        <Text style={styles.butextcancelar}>Ver mas centros comerciales</Text>
-      </TouchableOpacity>
+         
       </View>
       
-      </View>
-    </View>
-
+      <TouchableOpacity style={styles.button} onPress={goToThirteen}>
+        <Text style={styles.buttonText}>Ver más centros comerciales</Text>
+      </TouchableOpacity>
       <View style={{ marginTop: 220, marginLeft: 280, marginRight: 40}}>
-        <Button title="Siguiente" onPress={goToThirteen} />
+        <Button title="Siguiente" onPress={handleButtonPress} />
       </View>
-
+          
+      
+      </ScrollView>
+      </View>
     </View>
+    
   );
 }
 
@@ -109,14 +101,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
-  },
-  headerText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#fff',
   },
   logo: {
     flex: 1,
@@ -125,15 +111,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
-    height: '28%',
+    height: '10%',
     resizeMode: 'contain',
   },
   imagen1: {
     width: '100%',
-    height: '15%',
+    height: '10%',
     resizeMode: 'contain',
   },
   imagen2: {
@@ -141,55 +126,59 @@ const styles = StyleSheet.create({
     height: '40%',
     resizeMode: 'contain',
   },
-
-  bucancelar: {
-    backgroundColor: 'orange',
-    borderRadius: 30,
-    padding: 10,
-    marginTop: 30,
-    width: '80%',
-    marginLeft: 40,
-
-  },
-  butextcancelar: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+  imagenmikeContainer: {
+    marginTop: 20,
+    paddingHorizontal: 20,
   },
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
     marginLeft: 20,
   },
-  container: {
-    flex: 1,
-  },
- 
-  table: {
-    flex: 1,
-    marginTop: 60,
-  },
-  headerRow: {
+  cardContainer: {
+    marginTop: 10,
+    paddingHorizontal: 20,
     flexDirection: 'row',
+    flexWrap: 'wrap', 
+    justifyContent: 'flex-end',
+  },
+  card: {
     backgroundColor: '#f2f2f2',
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    paddingVertical: 10,
+    borderRadius: 10,
+    borderWidth: 1, 
+    borderColor: 'gray',
+    padding: 10,
+    marginBottom: 10,
+    width: '46%', 
+    marginRight: '4%',
   },
-  headerCell: {
-    flex: 1,
-    textAlign: 'center',
+  cardText: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  button: {
+    backgroundColor: 'orange',
+    borderRadius: 30,
+    padding: 10,
+    marginTop: 20,
+    marginHorizontal: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
     fontWeight: 'bold',
-  },  
-  row: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    paddingVertical: 10,
-  },
-  cell: {
-    flex: 1,
     textAlign: 'center',
   },
+  buttonContainer: {
+    marginTop: 220,
+    marginLeft: 280,
+    marginRight: 40,
+  },
+  cardImage: {
+  width: '100%',
+  height: 100,
+  resizeMode: 'cover',
+  marginBottom: 5,
+  borderRadius: 10,
+},
 });
