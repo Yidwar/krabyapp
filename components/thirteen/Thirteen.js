@@ -5,14 +5,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 
-export default function Thirteen({ navigation }) {
+export default function Thirteen({route, navigation }) {
+  const {claveid} =route.params
 
     const [restaurante, setRestaurante] = useState([]);
     useEffect(() => {
         async function apires() {
           try {
-            const resta1 = await axios.get('http://10.0.2.2:8000/api/restaurante');
-          console.log("hola");
+            const resta1 = await axios.get('http://10.0.2.2:8000/api/lista_restaurantes_centro_comercial/'+claveid);
+         
           setRestaurante(resta1.data);
          console.log(restaurante);
           } catch (error) {
@@ -24,8 +25,9 @@ export default function Thirteen({ navigation }) {
 
   
 
-  const goToFifteen = () => {
-    navigation.navigate('Quince');
+  const goToFifteen = (id) => {
+    console.log("THISMENU",id);
+    navigation.navigate('Quince',{claveidres:id});
   };
 
   return (
@@ -54,7 +56,7 @@ export default function Thirteen({ navigation }) {
       <ScrollView>
       <View style={styles.cardContainer}>
         {restaurante.map((item) => (
-        <TouchableOpacity style={styles.card} key={item.id}>
+        <TouchableOpacity style={styles.card} key={item.id} onPress={()=>goToFifteen(item.id)}>
         <Image source={{ uri: item.foto_baner }} style={styles.cardImage} />
         <Text style={styles.cardText}>{item.nombre_restaurante}</Text>
         <Text style={styles.cardText}>Horario: {item.horario}</Text>
@@ -62,10 +64,7 @@ export default function Thirteen({ navigation }) {
         ))}
         </View>
         </ScrollView>
-      <View style={{ marginTop: -50, marginLeft: 280, marginRight: 20 }}>
-        <Button title="Siguiente" onPress={goToFifteen} />
-        
-      </View>
+      
       
     </View>
     

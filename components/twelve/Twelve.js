@@ -28,8 +28,9 @@ export default function Twelve({ navigation }) {
 
     console.log('Botón presionado');
   };
-  const goToThirteen = () => {
-    navigation.navigate('Trece');
+  const goToThirteen = (id) => {
+    console.log("THIS",id);
+    navigation.navigate('Trece',{claveid:id});
   }
 
   return (
@@ -58,7 +59,7 @@ export default function Twelve({ navigation }) {
         <View style={styles.cardContainer}>
         
         {menu.map((item) => (
-          <TouchableOpacity style={styles.card} key={item.id}>
+          <TouchableOpacity style={styles.card} key={item.id} onPress={()=>goToThirteen(item.id)} >
             <Image source={{ uri:item.imagen }} style={styles.cardImage} />
             <Text style={styles.cardText}>{item.nombre_centro_comercial}</Text>
             <Text style={styles.cardText}>{item.direccion}</Text>
@@ -68,9 +69,7 @@ export default function Twelve({ navigation }) {
          
       </View>
       
-      <TouchableOpacity style={styles.button} onPress={goToThirteen}>
-        <Text style={styles.buttonText}>Ver más centros comerciales</Text>
-      </TouchableOpacity>
+      
       <View style={{ marginTop: 220, marginLeft: 280, marginRight: 40}}>
         <Button title="Siguiente" onPress={handleButtonPress} />
       </View>

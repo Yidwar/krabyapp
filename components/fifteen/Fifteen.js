@@ -1,14 +1,35 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
 
-export default function Fifteen({ navigation }) {
+export default function Fifteen({route, navigation }) {
+  const {claveidres} =route.params
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+   async function api() {
+      try {
+        const menu1 = await axios.get('http://10.0.2.2:8000/api/menurestaurante/'+ claveidres);
+        console.log("hola mike");
+       setMenu(menu1.data);
+       console.log(menu);
+        
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    api()
+    
+  }, []);
 
   const handleButtonPress = () => {
 
     console.log('Botón presionado');
   };
-
+  //<Image source={require('../../assets/menu.png')} style={styles.imagen2} resizeMode="stretch" />
   const goToSeventeen = () => {
     navigation.navigate('Diecisiete');
   }
@@ -28,19 +49,23 @@ export default function Fifteen({ navigation }) {
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
-      </View>
+    </View>
       <View style={styles.imagenmikeContainer}>
         <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
-
-
-        <Image source={require('../../assets/menu.png')} style={styles.imagen2} resizeMode="stretch" />
       </View>
-
-      <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
-        <Text style={styles.butextcancelar}>Añade tu pedido</Text>
-      </TouchableOpacity>
-
-      <View style={{ marginTop: -15, marginLeft: 280, marginRight: 20}}>
+      <View style={styles.menuInfoContainer}>
+        {menu.map((menuItem, index) => (
+          <TouchableOpacity style={styles.menuCard} key={index}>
+            <Image source={{ uri: menuItem.imagen_menu }} style={styles.menuImage} resizeMode="cover" />
+            <Text style={styles.menuName}>{menuItem.producto}</Text>
+            <View style={styles.menuFooter}>
+              <Text style={styles.menuPrice}>Precio: {menuItem.precio}</Text>
+              <Icon name="cart-outline" size={30} color="orange" style={styles.menuCartIcon} />
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <View style={{ marginTop: 10, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToSeventeen} />
       </View>
 
@@ -85,7 +110,7 @@ const styles = StyleSheet.create({
 
   imagen: {
     width: '100%',
-    height: '28%',
+    height: '50%',
     resizeMode: 'contain',
   },
   imagen1: {
@@ -113,14 +138,53 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
     marginLeft: 20,
-
   },
+  imagenmikeContainer: {
+    width: '100%',
+    height: 200, // Ajusta la altura deseada para la imagen
+  },
+  menuInfoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  menuCard: {
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    width: '80%',
+    alignItems: 'center',
+  },
+  menuImage: {
+    width: '100%',
+    height: 100, // Ajusta la altura deseada para la imagen
+    resizeMode: 'cover',
+    marginBottom: 10,
+  },
+  menuName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  menuFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  menuPrice: {
+    fontSize: 16,
+  },
+  menuCartIcon: {
+    marginLeft: 10,
+  },
+
 });
