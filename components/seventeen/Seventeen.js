@@ -1,9 +1,14 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView } from 'react-native';
+
+
 
 export default function Seventeen({ navigation }) {
-
+ 
   const handleButtonPress = () => {
 
     console.log('Botón presionado');
@@ -12,7 +17,30 @@ export default function Seventeen({ navigation }) {
   const goToEighteen = () => {
     navigation.navigate('Dieciocho');
   }
+  const [cartProductos, setCartProductos] = useState([]);
+  useEffect(() => {
+  
+   async function api() {
+    console.log("hola carrito");
+    }
 
+    const loadCartProducts = async () => {
+      try {
+        const jsonCart = await AsyncStorage.getItem('cartProducts');
+        if (jsonCart !== null) {
+          const cart = JSON.parse(jsonCart);
+          setCartProductos(cart);
+          //console.log(cart);
+          console.log(cartProductos);
+        }
+      } catch (error) {
+        console.error('Error al cargar los productos desde AsyncStorage:', error);
+      }
+    };
+    api()
+    loadCartProducts()
+    
+  }, []);
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
@@ -36,7 +64,7 @@ export default function Seventeen({ navigation }) {
 
 
 
-
+      <ScrollView>
       <View style={styles.inputContainer}>
 
         <View style={styles.inputmike}>
@@ -45,23 +73,26 @@ export default function Seventeen({ navigation }) {
           <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
         </View>
 
-        <View style={styles.productContainer}>
-          <Image source={require('../../assets/pizza2.png')} style={styles.productImage} resizeMode="contain" />
-          <View style={styles.productInfo}>
-            <Text style={styles.productName}>Pizza con champiñones</Text>
-            <Text style={styles.productPrice}>$ 10.000 c/u</Text>
+        
+        {cartProductos.map((product, index) => (
+          <View key={index} style={styles.productContainer}>
+            <Image source={{uri:product.imagen_menu}} style={styles.productImage} resizeMode="contain" />
+            <View style={styles.productInfo}>
+              <Text style={styles.productName}>{product.producto}</Text>
+              <Text style={styles.productPrice}>$ {product.precio} c/u</Text>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <TouchableOpacity style={styles.button}>
+                <Icon name="remove-circle" size={30} color="#C2D177" />
+              </TouchableOpacity>
+              <Text style={styles.quantity}>1</Text>
+              <TouchableOpacity style={styles.button}>
+                <Icon name="add-circle" size={30} color="#C2D177" />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Icon name="remove-circle" size={30} color="#C2D177" />
-            </TouchableOpacity>
-            <Text style={styles.quantity}>1</Text>
-            <TouchableOpacity style={styles.button}>
-              <Icon name="add-circle" size={30} color="#C2D177" />
-            </TouchableOpacity>
-          </View>
-        </View>
-
+        ))}
+        
         <View style={styles.inputmike}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
@@ -88,7 +119,7 @@ export default function Seventeen({ navigation }) {
           <Text style={styles.subtotalText}>Subtotal</Text>
           <Text style={styles.priceText}>$10,000</Text>
         </View>
-
+        
         <Text>
           Si deseas que tengamos en cuenta tus comentarios para{"\n"}
           la preparación, escríbenos.
@@ -98,6 +129,7 @@ export default function Seventeen({ navigation }) {
           style={styles.textInput}
         />
       </View>
+      </ScrollView>
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
         <Text style={styles.butextcancelar}>Pagar</Text>
       </TouchableOpacity>
@@ -107,7 +139,8 @@ export default function Seventeen({ navigation }) {
       </View>
     </View>
   );
-}
+  
+};
 
 const styles = StyleSheet.create({
   container: {
