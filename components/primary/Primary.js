@@ -30,12 +30,12 @@ export default function Primary({ navigation }) {
           </View>
 
           <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-            <Text style={styles.skipButtonText}>Omitir</Text>
+            <Text style={styles.skipButtonText} onPress={goToSecond}>Omitir</Text>
           </TouchableOpacity>
 
-          <View style={{ marginTop: 180, marginLeft: 250 }}>
+          {/* <View style={{ marginTop: 180, marginLeft: 250 }}>
             <Button title="Siguiente" onPress={goToSecond} />
-          </View>
+          </View> */}
         </View>
       </ImageBackground>
       <StatusBar style="auto" />

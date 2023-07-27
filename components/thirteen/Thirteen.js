@@ -3,26 +3,27 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpa
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Swiper from 'react-native-swiper';
 import { ScrollView } from 'react-native';
 
 export default function Thirteen({ navigation }) {
 
-    const [restaurante, setRestaurante] = useState([]);
-    useEffect(() => {
-        async function apires() {
-          try {
-            const resta1 = await axios.get('http://10.0.2.2:8000/api/restaurante');
-          console.log("hola");
-          setRestaurante(resta1.data);
-         console.log(restaurante);
-          } catch (error) {
-            console.error(error);
-          }
-        }
-        apires()
-    }, []);
+  const [restaurante, setRestaurante] = useState([]);
+  useEffect(() => {
+    async function apires() {
+      try {
+        const resta1 = await axios.get('http://10.0.2.2:8000/api/restaurante');
+        console.log("hola");
+        setRestaurante(resta1.data);
+        console.log(restaurante);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    apires()
+  }, []);
 
-  
+
 
   const goToFifteen = () => {
     navigation.navigate('Quince');
@@ -44,31 +45,37 @@ export default function Thirteen({ navigation }) {
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
       </View>
-      
+
       <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/centroscomerciales.png')} style={styles.imagen} resizeMode="stretch" />
+        {/* CENTROS COMERCIALES */}
+        <View style={styles.carouselContainer}>
+          <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}>
+            <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
+            <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
+          </Swiper>
+        </View>
 
         <Image source={require('../../assets/pizza1.png')} style={styles.imagen1} resizeMode="stretch" />
         <Text style={styles.subTitle}>Selecciona el restaurante mike yidwar</Text>
-        </View>
+      </View>
       <ScrollView>
-      <View style={styles.cardContainer}>
-        {restaurante.map((item) => (
-        <TouchableOpacity style={styles.card} key={item.id}>
-        <Image source={{ uri: item.foto_baner }} style={styles.cardImage} />
-        <Text style={styles.cardText}>{item.nombre_restaurante}</Text>
-        <Text style={styles.cardText}>Horario: {item.horario}</Text>
-        </TouchableOpacity>
-        ))}
+        <View style={styles.cardContainer}>
+          {restaurante.map((item) => (
+            <TouchableOpacity style={styles.card} key={item.id}>
+              <Image source={{ uri: item.foto_baner }} style={styles.cardImage} />
+              <Text style={styles.cardText}>{item.nombre_restaurante}</Text>
+              <Text style={styles.cardText}>Horario: {item.horario}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
-        </ScrollView>
+      </ScrollView>
       <View style={{ marginTop: -50, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToFifteen} />
-        
+
       </View>
-      
+
     </View>
-    
+
   );
 }
 
@@ -90,7 +97,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -106,7 +112,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
     height: '50%',
@@ -122,7 +127,6 @@ const styles = StyleSheet.create({
     height: '45%',
     resizeMode: 'contain',
   },
-
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
@@ -130,17 +134,13 @@ const styles = StyleSheet.create({
     marginTop: -50,
     width: '80%',
     marginLeft: 40,
-
   },
   butextcancelar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#000',
@@ -173,5 +173,19 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 14,
     marginBottom: 5,
+  },
+  carouselContainer: {
+    width: 460,
+    height: 200,
+    alignItems: 'flex-end',
+    marginLeft: 0,
+  },
+  carouselImage: {
+    width: '90%',
+    height: '90%',
+    resizeMode: 'cover',
+  },
+  paginationStyle: {
+    marginLeft: -50,
   },
 });

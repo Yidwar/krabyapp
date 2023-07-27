@@ -31,12 +31,12 @@ export default function Quarter({ navigation }) {
           </View>
 
           <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
-            <Text style={styles.skipButtonText}>Omitir</Text>
+            <Text style={styles.skipButtonText} onPress={goToFifth}>Omitir</Text>
           </TouchableOpacity>
-
+{/* 
           <View style={{ marginTop: 180, marginLeft: 250 }}>
-            <Button title="Siguiente" onPress={goToFifth} />
-          </View>
+            <Button title="Siguiente"  />
+          </View> */}
 
         </View>
       </ImageBackground>

@@ -32,16 +32,13 @@ export default function Twenty({navigation}) {
 
       <View style={styles.inputContainer}>
         <View style={styles.inputmike}>
-
-          <Text style={styles.subTitle}>¿Desea eliminar su pedidos? </Text>
-
+          <Text style={styles.subTitle}>¿Dese eliminar su pedido?</Text>
         </View>
         <View style={styles.inputmike}>
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
               <View style={styles.parrafo1}>
-                <Text style={styles.titulomike}>Familiar{"\n"}
-                  24 Porciones
+                <Text style={styles.titulomike}>Familiar{"\n"}24 Porciones
                 </Text>
               </View>
 
@@ -57,11 +54,11 @@ export default function Twenty({navigation}) {
           </View>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity style={styles.button}>
-              <Icon name="remove-circle" size={30} color="#C2D177" />
+              <Icon name="remove-circle" size={30} color="#b7bf04" />
             </TouchableOpacity>
             <Text style={styles.quantity}>1</Text>
             <TouchableOpacity style={styles.button}>
-              <Icon name="add-circle" size={30} color="#C2D177" />
+              <Icon name="add-circle" size={30} color="#b7bf04" />
             </TouchableOpacity>
           </View>
         </View>
@@ -145,7 +142,6 @@ const styles = StyleSheet.create({
   inputmike: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 5,
     paddingHorizontal: 10,
@@ -158,11 +154,10 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     flex: 1,
-    color: '#888',
+    color: 'black',
     fontWeight: 'bold',
     marginBottom: 20,
-    marginLeft: 60,
-
+    marginLeft: 75,
   },
 
   button: {
@@ -178,20 +173,15 @@ const styles = StyleSheet.create({
     borderRadius: 1,
   },
   bumike1: {
-    backgroundColor: 'orange',
+    backgroundColor: '#e4b408',
     paddingHorizontal: 3,
     paddingVertical: 6,
     borderRadius: 1,
     marginVertical: -10,
     marginHorizontal: 20,
-
     borderRadius: 5,
     marginLeft: 100,
-
-  },
-  buttonText: {
-    color: 'orange',
-    fontWeight: 'bold',
+    width: 120,
   },
   buttonText1: {
     color: '#FFA500',
@@ -215,7 +205,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bucancelar: {
-    backgroundColor: '#C2D177',
+    backgroundColor: '#b7bf04',
     borderRadius: 30,
     padding: 10,
     marginTop: 20,
@@ -223,7 +213,7 @@ const styles = StyleSheet.create({
     marginLeft: 100,
   },
   bucancelar1: {
-    backgroundColor: '#C2D177',
+    backgroundColor: '#cccccc',
     borderRadius: 30,
     padding: 10,
     marginTop: 20,
@@ -251,6 +241,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
+    marginLeft: 13,
   },
   subtitulo: {
     color: 'white',
@@ -292,7 +283,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#e4b408',
     padding: 10,
     marginVertical: 18,
     width: '100%',

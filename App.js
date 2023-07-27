@@ -47,7 +47,7 @@ function App() {
         <Stack.Screen name="Trece" component={Thirteen} options={{ headerShown: false }}/>
         <Stack.Screen name="Quince" component={Fifteen} options={{ headerShown: false }}/>
         <Stack.Screen name="Diecisiete" component={Seventeen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Dieciocho" component={Eighteen}/>
+        <Stack.Screen name="Dieciocho" component={Eighteen} options={{ headerShown: false }}/>
         <Stack.Screen name="Diecinueve" component={Nineteen} options={{ headerShown: false }}/>
         <Stack.Screen name="Veinte" component={Twenty} options={{ headerShown: false }}/>
         <Stack.Screen name="Veinte uno" component={Twentyone} options={{ headerShown: false }}/>

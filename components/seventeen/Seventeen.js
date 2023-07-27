@@ -31,18 +31,17 @@ export default function Seventeen({ navigation }) {
       </View>
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
-
+        <ImageBackground source={require('../../assets/fiorella.png')}
+              style={styles.imagen1}
+            />
       </View>
 
-
-
-
       <View style={styles.inputContainer}>
-
         <View style={styles.inputmike}>
-
-          <Text style={styles.subTitle}>Conoce tu orden mike</Text>
-          <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
+          <Text style={styles.subTitle}>Conoce tu orden</Text>
+          <TouchableOpacity>
+            <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.productContainer}>
@@ -70,13 +69,13 @@ export default function Seventeen({ navigation }) {
               </View>
               <Text style={styles.subtitulo}>6 porciones</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
+            <TouchableOpacity style={styles.bumike2} onPress={() => console.log('Editar')}>
               <View style={styles.parrafo1}>
                 <Text style={styles.titulomike}>Mediana</Text>
               </View>
               <Text style={styles.subtitulo}>12 porciones</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
+            <TouchableOpacity style={styles.bumike2} onPress={() => console.log('Editar')}>
               <View style={styles.parrafo1}>
                 <Text style={styles.titulomike}>Familiar</Text>
               </View>
@@ -85,26 +84,16 @@ export default function Seventeen({ navigation }) {
           </View>
         </View>
         <View style={styles.orangeRow}>
-          <Text style={styles.subtotalText}>Subtotal</Text>
+          <Text style={styles.subtotalText}>Sub total</Text>
           <Text style={styles.priceText}>$10,000</Text>
         </View>
 
-        <Text>
-          Si deseas que tengamos en cuenta tus comentarios para{"\n"}
-          la preparación, escríbenos.
-        </Text>
-        <TextInput
-          placeholder='Quiero mi filete con mas salsas'
-          style={styles.textInput}
-        />
+        <Text style={styles.texto}>Si deseas que tengamos en cuenta tus comentarios para{"\n"}la preparación, escríbenos.</Text>
+        <TextInput placeholder='Quiero mi filete con mas salsa' style={styles.textInput} />
       </View>
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
-        <Text style={styles.butextcancelar}>Pagar</Text>
+        <Text style={styles.butextcancelar} onPress={goToEighteen}>Pagar</Text>
       </TouchableOpacity>
-
-      <View style={{ marginTop: 10, marginLeft: 280, marginRight: 20 }}>
-        <Button title="Siguiente" onPress={goToEighteen} />
-      </View>
     </View>
   );
 }
@@ -128,7 +117,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -138,14 +126,14 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   textInput: {
-    borderWidth: 1,
     borderColor: '#fff',
     padding: 10,
-    width: '80%',
+    width: '100%',
     height: 50,
-    marginTop: 20,
-    borderRadius: 30,
-    backgroundColor: '#fff',
+    marginTop: 10,
+    borderRadius: 7,
+    backgroundColor: '#E3E1E1',
+    elevation: 5,
   },
   logo: {
     flex: 1,
@@ -154,36 +142,49 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   image: {
-    width: '100%',
-    height: '45%',
+    width: '110%',
+    height: '52%',
     resizeMode: 'contain',
+    marginLeft: -10,
+    marginTop: -7,
+  },
+  imagen1: {
+    position: 'absolute',
+    bottom: 95,
+    width: '45%',
+    height: '45%',
+    resizeMode: 'cover',
+    marginLeft: 158,
   },
   inputContainer: {
-
     marginTop: -150,
     paddingHorizontal: 20,
   },
   inputmike: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 5,
     paddingHorizontal: 10,
     marginHorizontal: 20,
     marginVertical: 2,
+    marginTop: 6,
   },
   inputIcon: {
-    marginRight: 10,
+    marginRight: -90,
     color: '#888',
+    marginBottom: -5,
+    marginTop: -20,
+    marginLeft: 22,
   },
   subTitle: {
     flex: 1,
-    color: '#888',
+    color: 'gray',
+    fontWeight: 'bold',
+    marginLeft: -28,
+    marginTop: -15,
   },
-
   button: {
     backgroundColor: '#FFf',
     paddingHorizontal: 3,
@@ -203,10 +204,24 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     marginVertical: -10,
     marginHorizontal: 20,
-    backgroundColor: '#E9E9E9',
+    backgroundColor: 'white',
     borderRadius: 5,
-    marginLeft: 5,
-
+    marginLeft: -34,
+    width: 120,
+    elevation: 5,
+  },
+  bumike2: {
+    backgroundColor: '#ADD8E6',
+    paddingHorizontal: 3,
+    paddingVertical: 6,
+    borderRadius: 1,
+    marginVertical: -10,
+    marginHorizontal: 20,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginLeft: -10,
+    width: 120,
+    elevation: 5,
   },
   buttonText: {
     color: 'orange',
@@ -234,19 +249,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bucancelar: {
-    backgroundColor: '#C2D177',
+    backgroundColor: '#bcc404',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
-    width: '80%',
-    marginLeft: 40,
+    marginTop: 30,
+    width: '60%',
+    marginLeft: 90,
   },
   butextcancelar: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
   textomikeContainer: {
     flexDirection: 'column',
@@ -259,13 +273,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   titulomike: {
-
     color: '#fc4b08',
     textAlign: 'center',
+    marginLeft: 30,
   },
   subtitulo: {
     color: '#888',
     textAlign: 'center',
+    marginTop: -7,
   },
   productContainer: {
     flexDirection: 'row',
@@ -286,7 +301,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 14,
-    color: '#888',
+    color: 'black',
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -303,22 +318,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#e4b414',
     padding: 10,
     marginVertical: 18,
-    width: '100%',
+    width: '111%',
+    marginLeft: -20,
+    marginTop: 30,
   },
   subtotalText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'left',
+    marginLeft: 5,
   },
   priceText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'right',
+    marginRight: 5,
   },
   orangeRowText: {
     color: 'orange',
@@ -332,5 +351,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginTop: 10,
     marginBottom: 20,
+  },
+  texto:{
+    paddingHorizontal: 12,
+    fontSize: 14,
+    color: 'gray',
+    marginLeft: -12,
   },
 });

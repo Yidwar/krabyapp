@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Eighteen({ navigation }) {
@@ -34,8 +34,8 @@ export default function Eighteen({ navigation }) {
         <View style={styles.productContainer}>
           <Image source={require('../../assets/filetepescado.png')} style={styles.productImage} resizeMode="contain" />
           <View style={styles.productInfo}>
-            <Text style={styles.productPrice}>Pescado asado </Text>
-            <Text style={styles.productPrice}>Pago de compra online</Text>
+            <Text style={styles.productPrice}>Pescado asado</Text>
+            <Text style={styles.productPrice2}>Pago de compra online</Text>
             <Text style={styles.productName}>$ 10.000 COP</Text>
           </View>
 
@@ -43,8 +43,9 @@ export default function Eighteen({ navigation }) {
       </View>
 
       <View style={styles.inputContainer}>
-        <View style={styles.inputmike}>
-          <TextInput style={styles.input} placeholder="Colombia" />
+        <View style={styles.inputmike2}>
+        <Image source={require('../../assets/colombia.png')} style={{ width: 20, height: 20 }} />
+          <TextInput style={styles.inputdos} placeholder="Colombia" />
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.bumike} onPress={() => console.log('Editar')}>
               <Text style={styles.buttonText}>ES</Text>
@@ -54,8 +55,7 @@ export default function Eighteen({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.inputmike}>
+        <View style={styles.inputmike2}>
           <TextInput style={styles.input} placeholder="lucia@gmail.com" />
           <TouchableOpacity style={styles.button} onPress={() => console.log('Editar')}>
             <Text style={styles.buttonText1}>Editar</Text>
@@ -68,30 +68,42 @@ export default function Eighteen({ navigation }) {
           <Text style={styles.subtitulo}>Seleccione el medio de pago</Text>
         </View>
 
-        <View style={styles.inputmike}>
-          <Icon name="search" size={20} color="#000" style={styles.inputIcon3} />
-          <TextInput
-            style={styles.input3}
-            placeholder="Productos Davivienda"
-          />
-        </View>
+        <View style={styles.space}>
 
-        <View style={styles.inputmike}>
-          <Icon name="cart-outline" size={20} color="#000" style={styles.inputIcon} />
-          <TextInput style={styles.input} placeholder="Tarjeta de Crédito y Débito" />
-        </View>
+          <View style={styles.inputmike}>
+            <Image source={require('../../assets/davivienda.png')}
+              style={{ width: 20, height: 20 }}
+            />
+            <TextInput style={styles.input1} placeholder="Productos Davivienda" />
+          </View>
 
-        <View style={styles.inputmike}>
-          <Icon name="cart-outline" size={20} color="#000" style={styles.inputIcon} />
-          <TextInput style={styles.input} placeholder="Cuenta de ahorro y corriente" />
-        </View>
-        <View style={styles.inputmike}>
-          <Icon name="cart-outline" size={20} color="#000" style={styles.inputIcon} />
-          <TextInput style={styles.input} placeholder="DaviPlata" />
-        </View>
-        <View style={styles.inputmike}>
-          <Icon name="cart-outline" size={20} color="#000" style={styles.inputIcon} />
-          <TextInput style={styles.input} placeholder="SafetyPay" />
+          <View style={styles.inputmike}>
+            <Image source={require('../../assets/credito.png')}
+              style={{ width: 20, height: 20 }}
+            />
+            <TextInput style={styles.input1} placeholder="Tarjeta de Crédito y Débito" />
+          </View>
+
+          <View style={styles.inputmike}>
+            <Image source={require('../../assets/pse.png')}
+              style={{ width: 20, height: 20 }}
+            />
+            <TextInput style={styles.input1} placeholder="Cuentas de ahorro y corriente" />
+          </View>
+
+          <View style={styles.inputmike}>
+            <Image source={require('../../assets/daviplata.png')}
+              style={{ width: 20, height: 20 }}
+            />
+            <TextInput style={styles.input1} placeholder="Daviplata" />
+          </View>
+
+          <View style={styles.inputmike}>
+            <Image source={require('../../assets/safety.png')}
+              style={{ width: 20, height: 20 }}
+            />
+            <TextInput style={styles.input1} placeholder="Safetypay" />
+          </View>
         </View>
 
       </View>
@@ -168,47 +180,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: 'grey',
-    borderRadius: 5,
+    borderRadius: 1,
     paddingHorizontal: 10,
     marginHorizontal: 20,
     marginVertical: 2,
+    backgroundColor: 'white',
+  },
+  inputmike2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'grey',
+    borderRadius: 1,
+    paddingHorizontal: 10,
+    marginHorizontal: 20,
+    marginVertical: 2,
+    backgroundColor: '#E1E1E1',
+  },
+  space:{
+    marginTop: 17,
   },
   inputIcon: {
     marginRight: 10,
   },
   input: {
     flex: 1,
-
   },
-
+  input1: {
+    marginLeft: 12,
+  },
+  inputdos:{
+    marginLeft: 8,
+  },
   button: {
-    backgroundColor: '#FFf',
+    backgroundColor: 'transparent',
     paddingHorizontal: 3,
     paddingVertical: 6,
     borderRadius: 5,
+    marginRight: -5,
   },
   bumike: {
     backgroundColor: '#1E90FF',
     paddingHorizontal: 3,
     paddingVertical: 6,
     borderRadius: 1,
+    marginRight: -1,
   },
   bumike1: {
-    backgroundColor: '#ADD8E6',
+    backgroundColor: '#D3D3D3',
     paddingHorizontal: 3,
     paddingVertical: 6,
     borderRadius: 1,
+    marginRight: -9,
   },
   buttonText: {
     color: '#FFF',
-    fontWeight: 'bold',
   },
   buttonText1: {
     color: '#FFA500',
-    fontWeight: 'bold',
   },
   buttonContainer: {
     flexDirection: 'row',
+    marginLeft: 185,
   },
   inputContainer3: {
     flexDirection: 'row',
@@ -250,10 +282,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   titulomike: {
-    fontWeight: 'bold',
+    marginLeft: -18,
+    marginTop: 8,
   },
   subtitulo: {
-    textAlign: 'left',
+    marginLeft: -18,
+    marginTop: -5,
   },
   productImage: {
     width: 80,
@@ -269,7 +303,10 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 14,
-    color: '#888',
-    fontWeight: 'bold',
+    color: 'black',
+  },
+  productPrice2: {
+    fontSize: 14,
+    color: 'gray',
   },
 });

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Swiper from 'react-native-swiper';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
@@ -8,21 +9,21 @@ export default function Twelve({ navigation }) {
 
   const [menu, setMenu] = useState([]);
 
-    useEffect(() => {
-     async function api() {
-        try {
-          const menu1 = await axios.get('http://10.0.2.2:8000/api/comercial');
-          console.log("hola");
-         setMenu(menu1.data);
-         console.log(menu);
-          
-        } catch (error) {
-          console.error(error);
-        }
+  useEffect(() => {
+    async function api() {
+      try {
+        const menu1 = await axios.get('http://10.0.2.2:8000/api/comercial');
+        console.log("hola");
+        setMenu(menu1.data);
+        console.log(menu);
+
+      } catch (error) {
+        console.error(error);
       }
-      api()
-      
-    }, []);
+    }
+    api()
+
+  }, []);
 
   const handleButtonPress = () => {
 
@@ -48,38 +49,41 @@ export default function Twelve({ navigation }) {
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
       </View>
+
+      {/* CARROUSEL */}
+      <View style={styles.carouselContainer}>
+        <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle} 
+        dot={<View style={styles.paginationDot} />} activeDot={<View style={styles.activePaginationDot} />}>
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
+        </Swiper>
+      </View>
       <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/cocacola.png')} style={styles.imagen} resizeMode="stretch" />
         <Text style={styles.subTitle}>Selecciona tu combo preferido</Text>
         <Image source={require('../../assets/corral1.png')} style={styles.imagen1} resizeMode="stretch" />
-        <Text style={styles.subTitle}>Conoce los mejores centros mike comerciales de Barranquilla</Text>
-        
+        <Text style={styles.subTitle}>Conoce los mejores centros comerciales de Barranquilla</Text>
+
         <ScrollView>
-        <View style={styles.cardContainer}>
-        
-        {menu.map((item) => (
-          <TouchableOpacity style={styles.card} key={item.id}>
-            <Image source={{ uri:item.imagen }} style={styles.cardImage} />
-            <Text style={styles.cardText}>{item.nombre_centro_comercial}</Text>
-            <Text style={styles.cardText}>{item.direccion}</Text>
-            <Text style={styles.cardText}>{item.ubicacion}</Text>
+          <View style={styles.cardContainer}>
+
+            {menu.map((item) => (
+              <TouchableOpacity style={styles.card} key={item.id}>
+                <Image source={{ uri: item.imagen }} style={styles.cardImage} />
+                <Text style={styles.cardText}>{item.nombre_centro_comercial}</Text>
+                <Text style={styles.cardText}>{item.direccion}</Text>
+                <Text style={styles.cardText}>{item.ubicacion}</Text>
+              </TouchableOpacity>
+            ))}
+
+          </View>
+
+          <TouchableOpacity style={styles.button} onPress={goToThirteen}>
+            <Text style={styles.buttonText} onPress={handleButtonPress} >Ver más centros comerciales</Text>
           </TouchableOpacity>
-        ))}
-         
-      </View>
-      
-      <TouchableOpacity style={styles.button} onPress={goToThirteen}>
-        <Text style={styles.buttonText}>Ver más centros comerciales</Text>
-      </TouchableOpacity>
-      <View style={{ marginTop: 220, marginLeft: 280, marginRight: 40}}>
-        <Button title="Siguiente" onPress={handleButtonPress} />
-      </View>
-          
-      
-      </ScrollView>
+        </ScrollView>
       </View>
     </View>
-    
+
   );
 }
 
@@ -112,13 +116,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagen: {
-    width: '100%',
-    height: '10%',
+    width: '111%',
+    height: '25%',
+    marginLeft: -20,
     resizeMode: 'contain',
+    marginTop: -20,
   },
   imagen1: {
     width: '100%',
-    height: '10%',
+    height: '20%',
     resizeMode: 'contain',
   },
   imagen2: {
@@ -133,23 +139,25 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
-    marginLeft: 20,
+    marginLeft: -2,
+    marginTop: -2,
+    paddingHorizontal: 11,
   },
   cardContainer: {
     marginTop: 10,
     paddingHorizontal: 20,
     flexDirection: 'row',
-    flexWrap: 'wrap', 
+    flexWrap: 'wrap',
     justifyContent: 'flex-end',
   },
   card: {
     backgroundColor: '#f2f2f2',
     borderRadius: 10,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderColor: 'gray',
     padding: 10,
     marginBottom: 10,
-    width: '46%', 
+    width: '46%',
     marginRight: '4%',
   },
   cardText: {
@@ -175,10 +183,39 @@ const styles = StyleSheet.create({
     marginRight: 40,
   },
   cardImage: {
-  width: '100%',
-  height: 100,
-  resizeMode: 'cover',
-  marginBottom: 5,
-  borderRadius: 10,
-},
+    width: '100%',
+    height: 100,
+    resizeMode: 'cover',
+    marginBottom: 5,
+    borderRadius: 10,
+  },
+  carouselContainer: {
+    width: 460,
+    height: 200,
+    alignItems: 'flex-end',
+    marginLeft: 0,
+  },
+  carouselImage: {
+    width: '90%',
+    height: '90%',
+    resizeMode: 'cover',
+  },
+  paginationStyle: {
+    marginLeft: -50,
+    bottom: -5,
+    borderRadius: 50,
+  },
+  paginationDot: {
+    width: 16, 
+    height: 3, 
+    borderRadius: 2, 
+    backgroundColor: '#fc4b08', 
+    marginHorizontal: 3, 
+  },
+  activePaginationDot: {
+    width: 16, 
+    height: 4, 
+    borderRadius: 2, 
+    marginHorizontal: 3, 
+  },
 });

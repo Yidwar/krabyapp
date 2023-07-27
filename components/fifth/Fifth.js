@@ -1,8 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 export default function Fifth({ navigation }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+  const handleSkip = () => {
+  };
 
   const handleButtonPress = () => {
     console.log('Botón presionado');
@@ -15,30 +23,36 @@ export default function Fifth({ navigation }) {
 
     <View style={styles.container}>
       <ImageBackground source={require('../../assets/imagen.png')} style={styles.backgroundImage}>
-        <Image source={require('../../assets/logo.png')} style={[styles.logo, { marginTop: -200 }]} />
-        <Text style={styles.subTitle}>Ingresa tu numero yidwar  mike de telefono o con tu correo electronico</Text>
-        <TextInput
-          placeholder='Ingresa con tu numero o correo'
-          style={styles.textInput}
-        />
-
-        <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-          <Text style={styles.buttonText}>Siguiente</Text>
-        </TouchableOpacity>
-        <View style={styles.checkboxContainer}>
-          <CheckBox
+        <View style={styles.overlay}>
+          <Image source={require('../../assets/logo.png')} style={[styles.logo, { marginTop: -200 }]} />
+          <Text style={styles.subTitle}>Ingresa tu número de teléfono{"\n"} o con tu correo electrónico</Text>
+          <TextInput placeholder='Ingresa con tu numero o correo' style={styles.textInput}
           />
-          <Text style={styles.checkboxLabel}>Acepto términos y condiciones</Text>
-        </View>
-        <View>
-          <View style={{ marginTop: -80, marginBottom: -220  }}>
-            <View style={{ marginTop: 240, marginLeft: 250}}>
-              <Button title="Siguiente" onPress={goToSixth} />
+
+          <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+            <Text style={styles.buttonText} onPress={goToSixth}>Siguiente</Text>
+          </TouchableOpacity>
+
+          <View style={styles.checkboxContainer}>
+            <View style={styles.checkboxTextContainer}>
+              <CheckBox
+                checked={isChecked}
+                onPress={handleCheckboxChange}
+                containerStyle={styles.checkBox}
+              />
+              <Text style={styles.checkboxText}>Acepto términos y condiciones.</Text>
             </View>
           </View>
-        </View>
+          <Text style={styles.subTitle1}>Iniciar sesión con Google</Text>
+          <View style={styles.container1}>
+            <Image source={require('../../assets/google.png')} style={[styles.logo1, { marginTop: 50 }]} />
+          </View>
+          <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
+            <Text style={styles.skipButtonText}>Quiero registrarme</Text>
+          </TouchableOpacity>
 
-        <StatusBar style="auto" />
+          <StatusBar style="auto" />
+        </View>
       </ImageBackground>
     </View>
   );
@@ -51,9 +65,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    paddingVertical: 270,
+    paddingHorizontal: 98,
+  },
   logo: {
     width: 150,
     height: 150,
+    resizeMode: 'contain',
+    marginLeft: 50,
+  },
+  logo1: {
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
   },
   backgroundImage: {
@@ -64,8 +89,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-
-
+  },
+  container1: {
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 10,
+    marginBottom: -80,
   },
   titulo: {
     fontSize: 80,
@@ -75,41 +105,85 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 15,
     color: '#fff',
-
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  subTitle1: {
+    fontSize: 15,
+    color: '#fff',
+    textAlign: 'center',
   },
   textInput: {
     borderWidth: 1,
     borderColor: '#fff',
     padding: 10,
-    width: '80%',
+    width: -200,
     height: 50,
     marginTop: 20,
     borderRadius: 30,
     backgroundColor: '#fff',
-  },
+    textAlign: 'center',
+    marginLeft: -20,
+    marginRight: -20,
 
+  },
   button: {
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
-    width: '80%',
+    marginTop: 10,
+    width: -60,
+    marginLeft: -20,
+    marginRight: -20,
+
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
+  },
+  checkBox: {
+    marginHorizontal: 12,
   },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 95,
+  },
+  checkboxTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: -20,
+    marginTop: -160,
+  },
+  checkboxText: {
+    fontSize: 13,
+    color: 'white',
+    marginLeft: -17,
+    marginRight: 5,
+    marginTop: -2,
   },
   checkboxLabel: {
     marginLeft: 8,
     color: '#fff',
   },
-
+  skipButton: {
+    position: 'absolute',
+    top: 70,
+    right: -10,
+    backgroundColor: 'transparent',
+    alignItems: 'center',
+    paddingVertical: 0,
+    paddingHorizontal: 10,
+    marginTop: 525,
+    marginRight: 150,
+  },
+  skipButtonText: {
+    fontSize: 15,
+    color: "white",
+    width: 130,
+    textAlign: 'center',
+    marginLeft: 50,
+  },
 });
