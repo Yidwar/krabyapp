@@ -12,8 +12,8 @@ export default function Fifteen({route, navigation }) {
   //const { cartCountGlobal } = route.params;
   const [menu, setMenu] = useState([]);
   const [cartClicked, setCartClicked] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartCountGlobal, setCartCountGlobal] = useState(0);
+  const [cartCount, setCartCount] = useState([0]);
+  //const [cartCountGlobal, setCartCountGlobal] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
   useEffect(() => {
    
@@ -42,6 +42,11 @@ export default function Fifteen({route, navigation }) {
     setCartClicked(false);
 
   };*/
+  useEffect(() => {
+    console.log(cartProducts);
+  }, [cartProducts]);
+
+
   const guardar_producto = (objeto) => {
     
     const updatedCart = [...cartProducts, objeto];
@@ -50,7 +55,7 @@ export default function Fifteen({route, navigation }) {
     
     setCartClicked(true);
     setCartCount(updatedCart.length);
-    setCartCountGlobal(updatedCart.length);
+    //setCartCountGlobal(updatedCart.length);
 
    
     saveCartProducts(updatedCart);
@@ -73,7 +78,7 @@ export default function Fifteen({route, navigation }) {
   };
   //<Image source={require('../../assets/menu.png')} style={styles.imagen2} resizeMode="stretch" />
   const goToSeventeen = () => {
-    navigation.navigate('Diecisiete', { cartCountGlobal });
+    navigation.navigate('Diecisiete', { cartCount });
   }
 
   return (
@@ -85,7 +90,7 @@ export default function Fifteen({route, navigation }) {
           <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
           <View style={styles.cartContainer}>
             <Icon name="cart-outline" size={30} color="white" style={styles.icon} onPress={goToSeventeen} />
-            {cartCountGlobal > 0 && <View style={styles.cartBadge}><Text style={styles.cartBadgeText}>{cartCountGlobal}</Text></View>}
+            {cartCount > 0 && <View style={styles.cartBadge}><Text style={styles.cartBadgeText}>{cartCount}</Text></View>}
           </View>
 
         </View>

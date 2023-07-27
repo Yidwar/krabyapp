@@ -17,7 +17,13 @@ export default function Seventeen({ navigation }) {
   const goToEighteen = () => {
     navigation.navigate('Dieciocho');
   }
+  
   const [cartProductos, setCartProductos] = useState([]);
+  const [productCounts, setProductCounts] = useState({});
+
+  
+
+
   useEffect(() => {
   
    async function api() {
@@ -30,8 +36,12 @@ export default function Seventeen({ navigation }) {
         if (jsonCart !== null) {
           const cart = JSON.parse(jsonCart);
           setCartProductos(cart);
-          //console.log(cart);
-          console.log(cartProductos);
+          const counts = cart.reduce((countsObj, product) => {
+            countsObj[product.id] = 1;
+            return countsObj;
+          }, {});
+          setProductCounts(counts);
+          console.log(counts)
         }
       } catch (error) {
         console.error('Error al cargar los productos desde AsyncStorage:', error);
@@ -41,9 +51,54 @@ export default function Seventeen({ navigation }) {
     loadCartProducts()
     
   }, []);
+  
+  
+
+  const incrementProduct = (productId) => {
+    setProductCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: (prevCounts[productId] || 0) + 1,
+    }));
+  };
+
+  // Función para restar la cantidad de un producto específico
+  const decrementProduct = (productId) => {
+    setProductCounts((prevCounts) => ({
+      ...prevCounts,
+      [productId]: Math.max((prevCounts[productId] || 0) - 1, 0),
+    }));
+  };
+
+
+
+  const calcularSubtotal = () => {
+    const subtotal = cartProductos.reduce(
+      (total, product) => total + product.precio * (productCounts[product.id] || 0),
+      0
+    );
+    return subtotal;
+  };
+  const total = calcularSubtotal();
+
+  const filteredCartProductos = cartProductos.reduce((uniqueCart, product) => {
+    // Verificamos si el producto ya existe en uniqueCart por su ID
+    const isProductInCart = uniqueCart.find((item) => item.id === product.id);
+  
+    // Si el producto no está en uniqueCart, lo agregamos
+    if (!isProductInCart) {
+      uniqueCart.push(product);
+    }
+  
+    return uniqueCart;
+  }, []);
+  
+  
+
+ 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -57,6 +112,7 @@ export default function Seventeen({ navigation }) {
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
       </View>
+      
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
 
@@ -64,7 +120,7 @@ export default function Seventeen({ navigation }) {
 
 
 
-      <ScrollView>
+      
       <View style={styles.inputContainer}>
 
         <View style={styles.inputmike}>
@@ -74,19 +130,23 @@ export default function Seventeen({ navigation }) {
         </View>
 
         
-        {cartProductos.map((product, index) => (
+        {filteredCartProductos.map((product, index) => (
+          
           <View key={index} style={styles.productContainer}>
+           
             <Image source={{uri:product.imagen_menu}} style={styles.productImage} resizeMode="contain" />
             <View style={styles.productInfo}>
               <Text style={styles.productName}>{product.producto}</Text>
               <Text style={styles.productPrice}>$ {product.precio} c/u</Text>
             </View>
             <View style={styles.buttonsContainer}>
-              <TouchableOpacity style={styles.button}>
+              {/* Botón restar cantidad */}
+              <TouchableOpacity style={styles.button} onPress={() => decrementProduct(product.id)}>
                 <Icon name="remove-circle" size={30} color="#C2D177" />
               </TouchableOpacity>
-              <Text style={styles.quantity}>1</Text>
-              <TouchableOpacity style={styles.button}>
+              <Text style={styles.quantity}>{productCounts[product.id] || 0}</Text>
+              {/* Botón incrementar cantidad */}
+              <TouchableOpacity style={styles.button} onPress={() => incrementProduct(product.id)}>
                 <Icon name="add-circle" size={30} color="#C2D177" />
               </TouchableOpacity>
             </View>
@@ -117,7 +177,7 @@ export default function Seventeen({ navigation }) {
         </View>
         <View style={styles.orangeRow}>
           <Text style={styles.subtotalText}>Subtotal</Text>
-          <Text style={styles.priceText}>$10,000</Text>
+          <Text style={styles.priceText}>${total}</Text>
         </View>
         
         <Text>
@@ -129,7 +189,7 @@ export default function Seventeen({ navigation }) {
           style={styles.textInput}
         />
       </View>
-      </ScrollView>
+     
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
         <Text style={styles.butextcancelar}>Pagar</Text>
       </TouchableOpacity>
