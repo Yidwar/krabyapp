@@ -1,18 +1,25 @@
 import { StyleSheet, Text, View, Image, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MapView, { Marker } from "react-native-maps";
-import { Dimensions } from "react-native";
+import MapView, {Marker} from 'react-native-maps';
 
 export default function Twentyone({ navigation }) {
 
   const handleButtonPress = () => {
-
     console.log('Botón presionado');
   };
 
   const goToTwentytwo = () => {
     navigation.navigate('Veinte dos');
-  }
+  };
+
+  const region = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.015,
+    longitudeDelta: 0.0121,
+    name: 'pasto'
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
@@ -51,7 +58,22 @@ export default function Twentyone({ navigation }) {
           <Text style={styles.paragraph2}>
             Ubicación
           </Text>
+
+          <View style={{ flex: 1 }}>
+            <MapView
+              style={styles.map}
+              region={region}
+              zoomEnabled={false}
+              scrollEnabled={false}
+              provider="google"
+            >
+              <Marker coordinate={{ latitude: region.latitude, longitude: region.longitude }} title={region.name} />
+            </MapView>
+          </View>
         </View>
+      </View>
+      <View style={{ marginTop: 120, marginLeft: 280, marginRight: 40 }}>
+        <Button title="Siguiente" onPress={goToTwentytwo} />
       </View>
     </View> //CIERRA
   );
@@ -171,8 +193,7 @@ const styles = StyleSheet.create({
     color: '#696565',
   },
   map: {
-    flex: 1,
-    width: '100%',
-    height: 200, // Ajusta la altura del mapa según tus necesidades
+    width: 300,
+    height: 180,
   },
 });
