@@ -14,7 +14,7 @@ export default function Thirty({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -25,11 +25,13 @@ export default function Thirty({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imageContainer}>
-        <Text style={styles.productName}>Notificaciones</Text>
+        <Text style={styles.productName1}>Notificaciones</Text>
         <View style={styles.productContainer}>
           <Image source={require('../../assets/filetepescado.png')} style={styles.productImage} resizeMode="contain" />
           <View style={styles.productInfo}>
@@ -61,10 +63,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 70,
-    marginLeft: 40,
+    marginLeft: 14,
+    marginTop: 25,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -119,9 +122,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-
   },
-
   button: {
     backgroundColor: '#FFf',
     paddingHorizontal: 3,
@@ -202,6 +203,13 @@ const styles = StyleSheet.create({
   },
   productInfo: {
     marginLeft: 16,
+  },
+  productName1: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#4B4B4B',
+    marginLeft: 18,
+    marginTop: 30,
   },
   productName: {
     fontSize: 16,

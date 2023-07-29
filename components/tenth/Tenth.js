@@ -14,7 +14,7 @@ export default function Tenth({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -25,7 +25,9 @@ export default function Tenth({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imageContainer}>
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,

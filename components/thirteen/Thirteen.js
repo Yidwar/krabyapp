@@ -31,7 +31,7 @@ export default function Thirteen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -42,7 +42,9 @@ export default function Thirteen({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -56,7 +58,7 @@ export default function Thirteen({ navigation }) {
         </View>
 
         <Image source={require('../../assets/pizza1.png')} style={styles.imagen1} resizeMode="stretch" />
-        <Text style={styles.subTitle}>Selecciona el restaurante mike yidwar</Text>
+        <Text style={styles.subTitle}>Selecciona el restaurante</Text>
       </View>
       <ScrollView>
         <View style={styles.cardContainer}>
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,

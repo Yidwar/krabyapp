@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: -3,
     width: '80%',
+    height: 55,
     paddingHorizontal: 110,
   },
   button1: {
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 13,
     width: '80%',
+    height: 55,
     paddingHorizontal: 105,
     marginBottom: 10,
   },
@@ -125,6 +127,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingVertical: 305,
-    paddingHorizontal: 62,
+    paddingHorizontal: 69,
   },
 });

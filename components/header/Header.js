@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Image, StatusBar, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Header() {
@@ -12,7 +12,9 @@ export default function Header() {
             <Image style={styles.logo} source={require('../../assets/logo.png')} />
             <View style={styles.iconsContainer}>
                 <Icon style={styles.icon} name="location-outline" size={30} color="white" />
-                <Icon style={styles.icon} name="ellipsis-vertical" size={30} color="white" />
+                <TouchableOpacity>
+                    <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+                </TouchableOpacity>
             </View>
         </View>
     )

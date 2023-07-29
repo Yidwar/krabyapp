@@ -51,9 +51,6 @@ export default function Thirtythree({ navigation }) {
                     </ImageBackground>
                 </View>
             </View>
-            <View style={{ marginTop: -120, marginLeft: 280, marginRight: 20 }}>
-                <Button title="Siguiente" onPress={goToThirtythree} />
-            </View>
         </View>
     );
 }

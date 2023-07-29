@@ -26,7 +26,7 @@ export default function Fifth({ navigation }) {
         <View style={styles.overlay}>
           <Image source={require('../../assets/logo.png')} style={[styles.logo, { marginTop: -200 }]} />
           <Text style={styles.subTitle}>Ingresa tu número de teléfono{"\n"} o con tu correo electrónico</Text>
-          <TextInput placeholder='Ingresa con tu numero o correo' style={styles.textInput}
+          <TextInput placeholder='Ingresa con tu número o correo' style={styles.textInput}
           />
 
           <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    paddingVertical: 270,
+    paddingVertical: 350,
     paddingHorizontal: 98,
   },
   logo: {
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   },
   skipButton: {
     position: 'absolute',
-    top: 70,
+    top: 170,
     right: -10,
     backgroundColor: 'transparent',
     alignItems: 'center',

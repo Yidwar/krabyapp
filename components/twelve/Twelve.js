@@ -35,7 +35,7 @@ export default function Twelve({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -46,14 +46,18 @@ export default function Twelve({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
 
       {/* CARROUSEL */}
       <View style={styles.carouselContainer}>
-        <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle} 
-        dot={<View style={styles.paginationDot} />} activeDot={<View style={styles.activePaginationDot} />}>
+        <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}
+          dot={<View style={styles.paginationDot} />} activeDot={<View style={styles.activePaginationDot} />}>
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
           <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
           <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
         </Swiper>
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -206,16 +210,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   paginationDot: {
-    width: 16, 
-    height: 3, 
-    borderRadius: 2, 
-    backgroundColor: '#fc4b08', 
-    marginHorizontal: 3, 
+    width: 16,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: '#fc4b08',
+    marginHorizontal: 3,
   },
   activePaginationDot: {
-    width: 16, 
-    height: 4, 
-    borderRadius: 2, 
-    marginHorizontal: 3, 
+    width: 16,
+    height: 4,
+    borderRadius: 2,
+    marginHorizontal: 3,
   },
 });

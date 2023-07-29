@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     position: 'absolute',
-    bottom: 65,
+    bottom: 80,
     width: '50%',
     height: '50%',
     resizeMode: 'cover',
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 40,
     left: 92,
     flexDirection: 'column',
     alignItems: 'flex-start',

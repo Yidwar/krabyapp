@@ -15,7 +15,7 @@ export default function Seventeen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -26,14 +26,16 @@ export default function Seventeen({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
         <ImageBackground source={require('../../assets/fiorella.png')}
-              style={styles.imagen1}
-            />
+          style={styles.imagen1}
+        />
       </View>
 
       <View style={styles.inputContainer}>
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     position: 'absolute',
-    bottom: 95,
+    bottom: 108,
     width: '45%',
     height: '45%',
     resizeMode: 'cover',
@@ -352,7 +354,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
-  texto:{
+  texto: {
     paddingHorizontal: 12,
     fontSize: 14,
     color: 'gray',

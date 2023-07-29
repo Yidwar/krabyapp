@@ -15,7 +15,7 @@ export default function Twentythree({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -26,7 +26,9 @@ export default function Twentythree({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imagenmikeContainer}>
@@ -34,16 +36,22 @@ export default function Twentythree({ navigation }) {
 
         <View style={styles.textContainer}>
           <Text style={styles.paragraph}>
-            Politicas del restaurante {"\n"} sjadjsghdjgs dsjfdhsjfdgfjsjf dgfsjgfjgsjfhgsj fsjhfsgfshgfjgsjfgs hfsdgfhsjgfjhsgfjhgjfhf fsjhfjhgffhjgfjg
+            Politicas del restaurante {"\n"}
           </Text>
-          <Text style={styles.paragraph}>
-            Tipos de comida {"\n"} Comida asada, fria, ahumada jdshjdhjhsdj djhsdjhd {"\n"} husdhuuhsuhdu dshudshudhudshud
+          <Text style={styles.texto1}>
+            No incluye otras promociones vigentes.
+          </Text>
+          <Text style={styles.texto2}>
+            Restricciones por contrato
+          </Text>
+          <Text style={styles.texto3}>
+            Restricciones por contrato
           </Text>
         </View>
       </View>
-      <View style={{ marginTop: 60, marginLeft: 290, marginRight: 30 }}>
-          <Button title="Siguiente" onPress={goToTwentyfour} />
-        </View>
+      <View style={{ marginTop: 160, marginLeft: 290, marginRight: 30 }}>
+        <Button title="Siguiente" onPress={goToTwentyfour} />
+      </View>
     </View>
   );
 }
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -66,7 +74,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -82,7 +89,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
     height: '40%',
@@ -90,13 +96,9 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     width: '95%',
-
     height: '15%',
     resizeMode: 'contain'
-
   },
-
-
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
@@ -104,24 +106,18 @@ const styles = StyleSheet.create({
     marginTop: -50,
     width: '80%',
     marginLeft: 40,
-
   },
   butextcancelar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
     marginLeft: 20,
-
   },
-
   textContainer: {
     paddingHorizontal: 20,
     marginTop: 20,
@@ -130,5 +126,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 16,
     lineHeight: 24,
+    fontWeight: 'bold',
+  },
+  texto1: {
+    marginTop: -5,
+    bottom: 13,
+  },
+  texto2: {
+    marginTop: 5,
+    bottom: 13,
+  },
+  texto3: {
+    marginTop: 5,
+    bottom: 13,
   },
 });

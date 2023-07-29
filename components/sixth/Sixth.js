@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     alignItems: 'center',
-    paddingVertical: 80,
+    paddingVertical: 350,
     paddingHorizontal: 75,
   },
   logo: {

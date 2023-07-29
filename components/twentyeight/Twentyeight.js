@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpa
 import Icon from 'react-native-vector-icons/Ionicons';
 //import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Twentyeight({ navigation }) {
   const goToTwentynine = () => {
@@ -10,7 +11,7 @@ export default function Twentyeight({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -21,23 +22,22 @@ export default function Twentyeight({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.boxContainer}>
+        <TouchableOpacity style={styles.iconoIzquierdaButton}>
+          <Ionicons name="md-arrow-back" size={40} color="#4B4B4B" />
+        </TouchableOpacity>
         <View style={styles.box}>
           <Text style={styles.boxText}>Soporte </Text>
           <Text style={styles.paragraph}>
             Para resolver cualquier inquietud. haz click en el icono  {"\n"} de whatsapp y comunicate con nosotros.
           </Text>
           <Icon name="logo-whatsapp" size={30} color="white" style={styles.whatsappIcon} />
-
         </View>
-        {/* <View>
-          {menu.map((menuItem) => (
-            <Text key={menuItem.id}>{menuItem.title}</Text>
-          ))}
-        </View> */}
       </View>
       <View>
         <View style={{ marginTop: -60, marginLeft: 280, marginRight: 20 }}>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: 'gray',
     padding: 20,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderRadius: 8,
   },
   boxText: {
@@ -103,11 +103,16 @@ const styles = StyleSheet.create({
   whatsappIcon: {
     fontSize: 30,
     color: '#25D366',
+    alignSelf: 'center',
   },
   paragraph: {
     borderColor: 'gray',
     marginBottom: 10,
     fontSize: 12,
     lineHeight: 24,
+  },
+  iconoIzquierdaButton: {
+    marginLeft: -310,
+    marginTop: -180,
   },
 });

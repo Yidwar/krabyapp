@@ -15,7 +15,7 @@ export default function Fifteen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -26,23 +26,19 @@ export default function Fifteen({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imagenmikeContainer}>
         <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
-
-
         <Image source={require('../../assets/menu.png')} style={styles.imagen2} resizeMode="stretch" />
       </View>
 
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
-        <Text style={styles.butextcancelar}>Añade tu pedido</Text>
+        <Text style={styles.butextcancelar} onPress={goToSeventeen}>Añade tu pedido</Text>
       </TouchableOpacity>
-
-      <View style={{ marginTop: -15, marginLeft: 280, marginRight: 20}}>
-        <Button title="Siguiente" onPress={goToSeventeen} />
-      </View>
 
     </View>
   );
@@ -53,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -103,7 +99,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: -50,
+    marginTop: -70,
     width: '80%',
     marginLeft: 40,
 

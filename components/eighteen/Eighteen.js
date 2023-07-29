@@ -15,7 +15,7 @@ export default function Eighteen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -26,7 +26,9 @@ export default function Eighteen({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imageContainer}>
@@ -44,7 +46,7 @@ export default function Eighteen({ navigation }) {
 
       <View style={styles.inputContainer}>
         <View style={styles.inputmike2}>
-        <Image source={require('../../assets/colombia.png')} style={{ width: 20, height: 20 }} />
+          <Image source={require('../../assets/colombia.png')} style={{ width: 20, height: 20 }} />
           <TextInput style={styles.inputdos} placeholder="Colombia" />
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.bumike} onPress={() => console.log('Editar')}>
@@ -111,7 +113,7 @@ export default function Eighteen({ navigation }) {
         <Text style={styles.butextcancelar}>Cancelar</Text>
       </TouchableOpacity>
 
-      <View style={{ marginTop: -18, marginLeft: 280, marginRight: 20 }}>
+      <View style={{ marginTop: 25, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToNineteen} />
       </View>
 
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     marginLeft: 40,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -196,7 +198,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     backgroundColor: '#E1E1E1',
   },
-  space:{
+  space: {
     marginTop: 17,
   },
   inputIcon: {
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
   input1: {
     marginLeft: 12,
   },
-  inputdos:{
+  inputdos: {
     marginLeft: 8,
   },
   button: {
@@ -260,7 +262,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
+    marginTop: 45,
     width: '80%',
     marginLeft: 40,
   },

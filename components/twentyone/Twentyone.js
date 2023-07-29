@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Image, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 export default function Twentyone({ navigation }) {
 
@@ -13,16 +13,16 @@ export default function Twentyone({ navigation }) {
   };
 
   const region = {
-    latitude: 37.78825,
-    longitude: -122.4324,
+    latitude: 1.2136,
+    longitude: -77.2811,
     latitudeDelta: 0.015,
     longitudeDelta: 0.0121,
-    name: 'pasto'
+    name: 'Pasto, Nariño'
   };
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -33,7 +33,9 @@ export default function Twentyone({ navigation }) {
         <Image source={require('../../assets/logo.png')} style={styles.logo} />
         <View style={styles.iconsContainer}>
           <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity>
+            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.imagenmikeContainer}>
@@ -72,7 +74,7 @@ export default function Twentyone({ navigation }) {
           </View>
         </View>
       </View>
-      <View style={{ marginTop: 120, marginLeft: 280, marginRight: 40 }}>
+      <View style={{ marginTop: 165, marginLeft: 300, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToTwentytwo} />
       </View>
     </View> //CIERRA
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -193,7 +195,8 @@ const styles = StyleSheet.create({
     color: '#696565',
   },
   map: {
-    width: 300,
+    width: 375,
     height: 180,
+    marginTop: 15,
   },
 });

@@ -52,14 +52,14 @@ function App() {
         <Stack.Screen name="Veinte" component={Twenty} options={{ headerShown: false }}/>
         <Stack.Screen name="Veinte uno" component={Twentyone} options={{ headerShown: false }}/>
         <Stack.Screen name="Veinte dos" component={Twentytwo} options={{ headerShown: false }}/>
-        <Stack.Screen name="Veinte tres" component={Twentythree} />
-        <Stack.Screen name="Veinte cuatro" component={Twentyfour} />
-        <Stack.Screen name="Veinte cinco" component={Twentyfive} />
+        <Stack.Screen name="Veinte tres" component={Twentythree} options={{ headerShown: false }}/>
+        <Stack.Screen name="Veinte cuatro" component={Twentyfour} options={{ headerShown: false }}/>
+        <Stack.Screen name="Veinte cinco" component={Twentyfive} options={{ headerShown: false }}/>
         <Stack.Screen name="Veinte seis" component={Twentysix} options={{ headerShown: false }}/>
-        <Stack.Screen name="Veinte ocho" component={Twentyeight} />
-        <Stack.Screen name="Veinte nueve" component={Twentynine}/>
-        <Stack.Screen name="Treinta" component={Thirty}/>
-        <Stack.Screen name="Treinta tres" component={Thirtythree} />
+        <Stack.Screen name="Veinte ocho" component={Twentyeight} options={{ headerShown: false }}/>
+        <Stack.Screen name="Veinte nueve" component={Twentynine} options={{ headerShown: false }}/>
+        <Stack.Screen name="Treinta" component={Thirty} options={{ headerShown: false }}/>
+        <Stack.Screen name="Treinta tres" component={Thirtythree} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
