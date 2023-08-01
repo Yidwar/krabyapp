@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MapView, { Marker } from 'react-native-maps';
 

@@ -11,7 +11,8 @@ export default function Tenth({ navigation }) {
 
   const goToEleven = () => {
     navigation.navigate('Once');
-  }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
@@ -34,9 +35,6 @@ export default function Tenth({ navigation }) {
         <Image source={require('../../assets/restaurante.png')} style={styles.image} resizeMode="stretch" />
         <Image source={require('../../assets/callejera.png')} style={styles.image} resizeMode="stretch" />
       </View>
-
-
-
 
       <View style={styles.inputContainer}>
 
@@ -111,9 +109,9 @@ export default function Tenth({ navigation }) {
       </View>
 
     </View>
+    
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

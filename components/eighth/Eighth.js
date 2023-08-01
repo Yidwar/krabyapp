@@ -8,8 +8,8 @@ export default function Eighth({ navigation }) {
     console.log('Botón presionado');
   };
 
-  const goToTenth = () => {
-    navigation.navigate('Decima');
+  const goToNine = () => {
+    navigation.navigate('Novena');
   }
 
   return (
@@ -21,7 +21,7 @@ export default function Eighth({ navigation }) {
           <Text style={styles.subTitle}>Necesitamos de tu permiso para localizar tu móvil y brindarte una mejor experiencia</Text>
 
           <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-            <Text style={styles.buttonText} onPress={goToTenth}>Aceptar</Text>
+            <Text style={styles.buttonText} onPress={goToNine}>Aceptar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button1} onPress={handleButtonPress}>
             <Text style={styles.buttonText1}>Cancelar</Text>

@@ -88,7 +88,7 @@ export default function Twentytwo({ navigation }) {
               style={styles.imagen1}
             />
 
-            <TouchableOpacity style={styles.iconContainerdos} onPress={handleIconPress}>
+            <TouchableOpacity onPress={handleIconPress}>
               <Image
                 source={require('../../assets/izquierda.png')}
                 style={styles.icon2} />
@@ -97,20 +97,19 @@ export default function Twentytwo({ navigation }) {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={[styles.button, { height: 35 }]}
-                onPress={() => handleButtonPress('Boton 1')}
-              >
+                onPress={() => handleButtonPress('Boton 1')}>
                 <Text style={styles.buttonLabel}>Descripción</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={[styles.button, styles.button2]}
-                onPress={() => handleButtonPress('Boton 2')}
-              >
+                onPress={() => handleButtonPress('Boton 2')}>
                 <Text style={styles.buttonLabel}>Calificación</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={[styles.button, styles.button3]}
-                onPress={() => handleButtonPress('Boton 3')}
-              >
+                onPress={() => handleButtonPress('Boton 3')}>
                 <Text style={styles.buttonLabel}>Politicas</Text>
               </TouchableOpacity>
             </View>
@@ -185,7 +184,7 @@ export default function Twentytwo({ navigation }) {
                   <TextInput
                     style={styles.input}
                     placeholder="Escribe tu comentario" />
-                  <TouchableOpacity style={styles.iconContainer} onPress={handleIconPress}>
+                  <TouchableOpacity onPress={handleIconPress}>
                     <Image
                       source={require('../../assets/envio.png')}
                       style={styles.icon} />
@@ -303,7 +302,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 23,
+    marginTop: 22,
     width: 100,
     textAlign: 'center',
   },
@@ -320,11 +319,13 @@ const styles = StyleSheet.create({
     marginLeft: 200,
     textAlign: 'center',
     width: 85,
+    marginTop: 23,
   },
   buttonLabel: {
     color: '#fff',
     fontSize: 11,
     fontWeight: 'bold',
+    marginTop: -0.5,
   },
   containerCircle: {
     alignItems: 'center',

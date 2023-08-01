@@ -81,8 +81,8 @@ export default function Twelve({ navigation }) {
 
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={goToThirteen}>
-            <Text style={styles.buttonText} onPress={handleButtonPress} >Ver más centros comerciales</Text>
+          <TouchableOpacity style={styles.button} >
+            <Text style={styles.buttonText} onPress={goToThirteen}>Ver más centros comerciales</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>

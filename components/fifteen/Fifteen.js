@@ -9,6 +9,10 @@ export default function Fifteen({ navigation }) {
     console.log('Botón presionado');
   };
 
+  const handleIconPress = () => {
+    console.log('Icono presionado');
+  };
+
   const goToSeventeen = () => {
     navigation.navigate('Diecisiete');
   }
@@ -31,10 +35,35 @@ export default function Fifteen({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
-        <Image source={require('../../assets/menu.png')} style={styles.imagen2} resizeMode="stretch" />
-      </View>
+
+      <ImageBackground
+        source={require('../../assets/pizzacont.png')}
+        style={styles.imagen}>
+        <ImageBackground
+          source={require('../../assets/fiorella.png')}
+          style={styles.imagen1}
+        />
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, { height: 35 }]}
+            onPress={() => handleButtonPress('Boton 1')}>
+            <Text style={styles.buttonLabel}>Descripción</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button2]}
+            onPress={() => handleButtonPress('Boton 2')}>
+            <Text style={styles.buttonLabel}>Calificación</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button3]}
+            onPress={() => handleButtonPress('Boton 3')}>
+            <Text style={styles.buttonLabel}>Politicas</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
 
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
         <Text style={styles.butextcancelar} onPress={goToSeventeen}>Añade tu pedido</Text>
@@ -62,7 +91,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -78,7 +106,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
     height: '28%',
@@ -94,29 +121,76 @@ const styles = StyleSheet.create({
     height: '60%',
     resizeMode: 'contain',
   },
-
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: -70,
+    marginTop: 280,
     width: '80%',
     marginLeft: 40,
-
   },
   butextcancelar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
     marginLeft: 20,
-
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 100,
+    left: 92,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    margin: 20,
+  },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 0,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginTop: 22,
+    width: 100,
+    textAlign: 'center',
+  },
+  button2: {
+    marginTop: 5,
+    bottom: 40,
+    marginLeft: 100,
+    textAlign: 'center',
+  },
+  button3: {
+    marginLeft: 5,
+    bottom: 98,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    marginLeft: 200,
+    textAlign: 'center',
+    width: 85,
+    marginTop: 23,
+  },
+  buttonLabel: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: 'bold',
+    marginTop: -0.5,
+  },
+  imagen: {
+    width: '100%',
+    height: '50%',
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: -7,
+  },
+  imagen1: {
+    position: 'absolute',
+    bottom: 102,
+    width: '50%',
+    height: '50%',
+    resizeMode: 'cover',
+    marginLeft: 16,
   },
 });

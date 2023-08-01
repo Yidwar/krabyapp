@@ -14,8 +14,8 @@ export default function Thirtythree({ navigation }) {
         console.log('Botón presionado');
     };
 
-    const goToThirtythree = () => {
-        navigation.navigate('Treinta tres');
+    const goToNine = () => {
+        navigation.navigate('Nueve');
     }
 
     return (
@@ -51,6 +51,9 @@ export default function Thirtythree({ navigation }) {
                     </ImageBackground>
                 </View>
             </View>
+            <View style={{ marginTop: -150, marginLeft: 280, marginRight: 20 }}>
+                    <Button title="Siguiente" onPress={goToNine} />
+                </View>
         </View>
     );
 }

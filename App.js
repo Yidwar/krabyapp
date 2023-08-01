@@ -27,6 +27,7 @@ import Twentyeight from './components/twentyeight/Twentyeight';
 import Twentynine from './components/twentynine/Twentynine';
 import Thirty from './components/thirty/Thirty';
 import Thirtythree from './components/thirtythree/Thirtythree';
+import Nine from './components/nine/Nine';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ function App() {
         <Stack.Screen name="Quinta" component={Fifth} options={{ headerShown: false }}/>
         <Stack.Screen name="Sexta" component={Sixth} options={{ headerShown: false }}/>
         <Stack.Screen name="Octava" component={Eigth} options={{ headerShown: false }}/>
+        <Stack.Screen name="Novena" component={Nine} options={{ headerShown: false }}/>
         <Stack.Screen name="Decima" component={Tenth} options={{ headerShown: false }}/>
         <Stack.Screen name="Once" component={Eleven} options={{ headerShown: false }}/>
         <Stack.Screen name="Doce" component={Twelve} options={{ headerShown: false }}/>
