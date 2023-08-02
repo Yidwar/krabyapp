@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MapView, { Marker } from 'react-native-maps';
 
@@ -10,6 +10,14 @@ export default function Twentyone({ navigation }) {
 
   const goToTwentytwo = () => {
     navigation.navigate('Veinte dos');
+  };
+
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno');
+  };
+
+  const goToTwentythree = () => {
+    navigation.navigate('Veinte tres');
   };
 
   const region = {
@@ -38,8 +46,69 @@ export default function Twentyone({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
+      <ImageBackground
+        source={require('../../assets/pizzacont.png')}
+        style={styles.imagen}>
+        <ImageBackground
+          source={require('../../assets/fiorella.png')}
+          style={styles.imagen1}
+        />
+      </ImageBackground>
+
+
+
+
+
+
+
+
+
+
       <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, { height: 35 }]}
+            onPress={() => handleButtonPress('Boton 1')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button2]}
+            onPress={() => handleButtonPress('Boton 2')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button3]}
+            onPress={() => handleButtonPress('Boton 3')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
+          </TouchableOpacity>
+        </View>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <View style={styles.orangeRow}>
           <Text style={styles.subtotalText}></Text>
           <Text style={styles.priceText}>ABIERTO AHORA</Text>
@@ -74,10 +143,10 @@ export default function Twentyone({ navigation }) {
           </View>
         </View>
       </View>
-      <View style={{ marginTop: 165, marginLeft: 300, marginRight: 20 }}>
+      <View style={{ marginTop: 20, marginLeft: 300, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToTwentytwo} />
       </View>
-    </View> //CIERRA
+    </View > //CIERRA
   );
 }
 
@@ -116,14 +185,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagen: {
-    width: '100%',
-    height: '32%',
-    resizeMode: 'contain',
+    width: '105%',
+    height: '50%',
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: 0,
   },
   imagen1: {
-    width: '95%',
-    height: '15%',
-    resizeMode: 'contain'
+    position: 'absolute',
+    bottom: 80,
+    width: '50%',
+    height: '50%',
+    resizeMode: 'cover',
+    marginLeft: 16,
   },
   bucancelar: {
     backgroundColor: 'orange',
@@ -152,6 +226,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 18,
     width: '100%',
+    top: -150,
   },
   subtotalText: {
     fontSize: 16,
@@ -167,6 +242,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     paddingHorizontal: 20,
+    top: -150,
   },
   paragraph: {
     fontSize: 14,
@@ -198,5 +274,43 @@ const styles = StyleSheet.create({
     width: 375,
     height: 180,
     marginTop: 15,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 264,
+    left: 92,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    margin: 20,
+  },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 0,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginTop: 22,
+    width: 100,
+    textAlign: 'center',
+  },
+  button2: {
+    marginTop: 5,
+    bottom: 40,
+    marginLeft: 100,
+    textAlign: 'center',
+  },
+  button3: {
+    marginLeft: 5,
+    bottom: 98,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    marginLeft: 200,
+    textAlign: 'center',
+    width: 85,
+    marginTop: 23,
+  },
+  buttonLabel: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: 'bold',
+    marginTop: -0.5,
   },
 });

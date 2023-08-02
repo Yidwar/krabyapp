@@ -7,7 +7,7 @@ export default function Nine({ navigation }) {
   };
 
   const goToTenth = () => {
-    navigation.navigate('Diez');
+    navigation.navigate('Decima');
   };
 
   return (
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#bcc404',
     borderRadius: 30,
     padding: 14,
-    marginTop: 80,
+    marginTop: 10,
     width: '80%',
     marginLeft: 40,
   },

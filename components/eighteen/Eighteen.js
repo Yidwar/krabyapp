@@ -113,7 +113,7 @@ export default function Eighteen({ navigation }) {
         <Text style={styles.butextcancelar}>Cancelar</Text>
       </TouchableOpacity>
 
-      <View style={{ marginTop: 25, marginLeft: 280, marginRight: 20 }}>
+      <View style={{ marginTop: 1, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToNineteen} />
       </View>
 

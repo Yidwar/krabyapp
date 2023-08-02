@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 10,
     left: 92,
     flexDirection: 'column',
     alignItems: 'flex-start',

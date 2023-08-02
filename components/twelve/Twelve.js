@@ -214,12 +214,13 @@ const styles = StyleSheet.create({
     height: 3,
     borderRadius: 2,
     backgroundColor: '#fc4b08',
-    marginHorizontal: 3,
+    marginHorizontal: 4,
   },
   activePaginationDot: {
     width: 16,
     height: 4,
     borderRadius: 2,
-    marginHorizontal: 3,
+    marginHorizontal: 4,
+    backgroundColor: '#cccccc',
   },
 });

@@ -1,11 +1,10 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, useState, StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Fifteen({ navigation }) {
 
   const handleButtonPress = () => {
-
     console.log('Botón presionado');
   };
 
@@ -15,7 +14,18 @@ export default function Fifteen({ navigation }) {
 
   const goToSeventeen = () => {
     navigation.navigate('Diecisiete');
-  }
+  };
+
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno'); 
+  };
+
+  const goToTwentytwo = () => {
+    navigation.navigate('Veinte dos'); 
+  };
+  const goToTwentythree = () => {
+    navigation.navigate('Veinte tres'); 
+  };
 
   return (
     <View style={styles.container}>
@@ -48,19 +58,19 @@ export default function Fifteen({ navigation }) {
           <TouchableOpacity
             style={[styles.button, { height: 35 }]}
             onPress={() => handleButtonPress('Boton 1')}>
-            <Text style={styles.buttonLabel}>Descripción</Text>
+            <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.button, styles.button2]}
             onPress={() => handleButtonPress('Boton 2')}>
-            <Text style={styles.buttonLabel}>Calificación</Text>
+            <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.button, styles.button3]}
             onPress={() => handleButtonPress('Boton 3')}>
-            <Text style={styles.buttonLabel}>Politicas</Text>
+            <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -107,25 +117,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagen: {
-    width: '100%',
-    height: '28%',
-    resizeMode: 'contain',
+    width: '105%',
+    height: '50%',
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: 0,
   },
   imagen1: {
-    width: '100%',
-    height: '15%',
-    resizeMode: 'contain',
-  },
-  imagen2: {
-    width: '100%',
-    height: '60%',
-    resizeMode: 'contain',
+    position: 'absolute',
+    bottom: 80,
+    width: '50%',
+    height: '50%',
+    resizeMode: 'cover',
+    marginLeft: 16,
   },
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 280,
+    marginTop: 150,
     width: '80%',
     marginLeft: 40,
   },
@@ -142,7 +152,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 100,
+    bottom: 53,
     left: 92,
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -177,20 +187,5 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: 'bold',
     marginTop: -0.5,
-  },
-  imagen: {
-    width: '100%',
-    height: '50%',
-    resizeMode: 'cover',
-    alignSelf: 'center',
-    marginTop: -7,
-  },
-  imagen1: {
-    position: 'absolute',
-    bottom: 102,
-    width: '50%',
-    height: '50%',
-    resizeMode: 'cover',
-    marginLeft: 16,
   },
 });
