@@ -1,6 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 
 export default function Eighteen({ navigation }) {
 
@@ -16,21 +16,7 @@ export default function Eighteen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
         <View style={styles.productContainer}>
@@ -40,7 +26,6 @@ export default function Eighteen({ navigation }) {
             <Text style={styles.productPrice2}>Pago de compra online</Text>
             <Text style={styles.productName}>$ 10.000 COP</Text>
           </View>
-
         </View>
       </View>
 
@@ -168,9 +153,11 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: '100%',
-    height: '28%',
+    width: '105%',
+    height: '29%',
     resizeMode: 'contain',
+    alignSelf: 'center',
+    top: -3,
   },
   inputContainer: {
 
@@ -242,7 +229,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginLeft: 185,
+    marginLeft: 186,
   },
   inputContainer3: {
     flexDirection: 'row',

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 import Swiper from 'react-native-swiper';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -36,22 +36,7 @@ export default function Twelve({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
+      <Header />
       {/* CARROUSEL */}
       <View style={styles.carouselContainer}>
         <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}
@@ -80,7 +65,6 @@ export default function Twelve({ navigation }) {
             ))}
 
           </View>
-
           <TouchableOpacity style={styles.button} >
             <Text style={styles.buttonText} onPress={goToThirteen}>Ver más centros comerciales</Text>
           </TouchableOpacity>
@@ -172,7 +156,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
+    marginTop: 200,
     marginHorizontal: 20,
   },
   buttonText: {

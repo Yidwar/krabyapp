@@ -4,39 +4,32 @@ import Icon from 'react-native-vector-icons/Ionicons';
 //import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import Header from '../../components/header/Header';
 
 export default function Twentyeight({ navigation }) {
   const goToTwentynine = () => {
     navigation.navigate('Veinte nueve');
-  }
+  };
+
+  const goToTwentyfour = () => {
+    navigation.navigate('Veinte cuatro');
+  };
+
+
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <StatusBar backgroundColor="#E26800" barStyle="light-content"/>
+      <Header />
       <View style={styles.boxContainer}>
         <TouchableOpacity style={styles.iconoIzquierdaButton}>
-          <Ionicons name="md-arrow-back" size={40} color="#4B4B4B" />
+          <Ionicons name="md-arrow-back" size={40} color="#4B4B4B" onPress={goToTwentyfour} />
         </TouchableOpacity>
         <View style={styles.box}>
           <Text style={styles.boxText}>Soporte </Text>
           <Text style={styles.paragraph}>
-            Para resolver cualquier inquietud. haz click en el icono  {"\n"} de whatsapp y comunicate con nosotros.
+            Para resolver cualquier inquietud. haz click en el icono{"\n"}de whatsapp y comunicate con nosotros.
           </Text>
-          <Icon name="logo-whatsapp" size={30} color="white" style={styles.whatsappIcon} />
+          <Icon name="logo-whatsapp" size={30} color="white" style={styles.whatsappIcon}/>
         </View>
       </View>
       <View>
@@ -51,16 +44,6 @@ export default function Twentyeight({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  header: {
-    backgroundColor: '#E26800',
-    paddingTop: StatusBar.currentHeight,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
   },
   iconsContainer: {
     flexDirection: 'row',
@@ -86,14 +69,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 300,
+    marginBottom: 210,
   },
   box: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: 'gray',
     padding: 20,
     alignItems: 'flex-start',
     borderRadius: 8,
+    width: 350,
   },
   boxText: {
     fontSize: 16,
@@ -109,10 +93,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     marginBottom: 10,
     fontSize: 12,
-    lineHeight: 24,
+    lineHeight: 15,
   },
   iconoIzquierdaButton: {
-    marginLeft: -310,
+    marginLeft: -320,
     marginTop: -180,
   },
 });

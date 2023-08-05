@@ -1,6 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 
 export default function Twentythree({ navigation }) {
 
@@ -13,26 +13,51 @@ export default function Twentythree({ navigation }) {
     navigation.navigate('Veinte cuatro');
   }
 
+  const goToTwentytwo = () => {
+    navigation.navigate('Veinte dos');
+  };
+
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno');
+  };
+
+  const goToTwentythree = () => {
+    navigation.navigate('Veinte tres');
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
+      <Header />
+      <ImageBackground
+        source={require('../../assets/pizzacont.png')}
+        style={styles.imagen}>
+        <ImageBackground
+          source={require('../../assets/fiorella.png')}
+          style={styles.imagen1}
+        />
+      </ImageBackground>
 
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
+      <View style={styles.imagenmikeContainer}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, { height: 35 }]}
+            onPress={() => handleButtonPress('Boton 1')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
+          </TouchableOpacity>
 
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
+          <TouchableOpacity
+            style={[styles.button, styles.button2]}
+            onPress={() => handleButtonPress('Boton 2')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button3]}
+            onPress={() => handleButtonPress('Boton 3')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
 
         <View style={styles.textContainer}>
           <Text style={styles.paragraph}>
@@ -49,7 +74,7 @@ export default function Twentythree({ navigation }) {
           </Text>
         </View>
       </View>
-      <View style={{ marginTop: 160, marginLeft: 290, marginRight: 30 }}>
+      <View style={{ marginTop: 80, marginLeft: 290, marginRight: 30 }}>
         <Button title="Siguiente" onPress={goToTwentyfour} />
       </View>
     </View>
@@ -90,14 +115,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagen: {
-    width: '100%',
-    height: '40%',
-    resizeMode: 'contain',
+    width: '105%',
+    height: '50%',
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: 0,
   },
   imagen1: {
-    width: '95%',
-    height: '15%',
-    resizeMode: 'contain'
+    position: 'absolute',
+    bottom: 80,
+    width: '50%',
+    height: '50%',
+    resizeMode: 'cover',
+    marginLeft: 16,
   },
   bucancelar: {
     backgroundColor: 'orange',
@@ -118,9 +148,49 @@ const styles = StyleSheet.create({
     color: '#9DBA0C',
     marginLeft: 20,
   },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 188,
+    left: 92,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    margin: 20,
+    left: 82,
+  },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 0,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginTop: 22,
+    width: 100,
+    textAlign: 'center',
+  },
+  button2: {
+    marginTop: 5,
+    bottom: 40,
+    marginLeft: 100,
+    textAlign: 'center',
+  },
+  button3: {
+    marginLeft: 5,
+    bottom: 98,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    marginLeft: 200,
+    textAlign: 'center',
+    width: 85,
+    marginTop: 23,
+  },
+  buttonLabel: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: 'bold',
+    marginTop: -0.5,
+  },
   textContainer: {
     paddingHorizontal: 20,
     marginTop: 20,
+    bottom: 160,
   },
   paragraph: {
     marginBottom: 10,

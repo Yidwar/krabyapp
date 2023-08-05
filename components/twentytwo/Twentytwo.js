@@ -12,14 +12,28 @@ export default function Twentytwo({ navigation }) {
     console.log('Icono presionado');
   };
 
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno');
+  };
+
+  const goToTwentytwo = () => {
+    navigation.navigate('Veinte dos');
+  };
+
   const goToTwentythree = () => {
     navigation.navigate('Veinte tres');
-  }
+  };
 
   const renderStars = (rating) => {
+    onst [selectedStars, setSelectedStars] = useState(0);
     const filledStars = Math.floor(rating);
     const halfStar = rating - filledStars >= 0.5;
     const emptyStars = 5 - filledStars - (halfStar ? 1 : 0);
+
+    const handleStarPress = (starIndex) => {
+      setSelectedStars(starIndex + 1);
+    };
+
     return (
       <View style={styles.starContainer}>
         {[...Array(filledStars)].map((_, index) => (
@@ -98,19 +112,19 @@ export default function Twentytwo({ navigation }) {
               <TouchableOpacity
                 style={[styles.button, { height: 35 }]}
                 onPress={() => handleButtonPress('Boton 1')}>
-                <Text style={styles.buttonLabel}>Descripción</Text>
+                <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={[styles.button, styles.button2]}
-                onPress={() => handleButtonPress('Boton 2')}>
-                <Text style={styles.buttonLabel}>Calificación</Text>
+                onPress={() => handleButtonPress('Boton 2')} >
+                <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={[styles.button, styles.button3]}
                 onPress={() => handleButtonPress('Boton 3')}>
-                <Text style={styles.buttonLabel}>Politicas</Text>
+                <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>
@@ -275,9 +289,9 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     position: 'absolute',
-    bottom: 80,
+    bottom: 60,
     width: '50%',
-    height: '50%',
+    height: '60%',
     resizeMode: 'cover',
     marginLeft: 15,
   },

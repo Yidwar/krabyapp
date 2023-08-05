@@ -1,5 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import Header from '../../components/header/Header';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Seventeen({ navigation }) {
@@ -16,21 +17,7 @@ export default function Seventeen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
         <ImageBackground source={require('../../assets/fiorella.png')}
@@ -153,7 +140,7 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     position: 'absolute',
-    bottom: 108,
+    bottom: 95,
     width: '45%',
     height: '45%',
     resizeMode: 'cover',

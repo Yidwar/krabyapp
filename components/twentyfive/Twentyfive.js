@@ -6,16 +6,25 @@ import Header from '../../components/header/Header';
 export default function Twentyfive({ navigation }) {
   const goToTwentysix = () => {
     navigation.navigate('Veinte seis');
-  }
+  };
+
+  const handleIconPress = () => {
+    console.log('Icono presionado');
+  };
+
+  const goToTwentyfour = () => {
+    navigation.navigate('Veinte cuatro');
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <Header/>
+      <Header />
 
       <View style={styles.contenido}>
         <View style={styles.iconoIzquierdaContainer}>
-          <TouchableOpacity>
-            <Ionicons name="md-arrow-back" size={30} color="white" />
+          <TouchableOpacity style={styles.iconoIzquierdaButton} onPress={handleIconPress} >
+            <Ionicons name="md-arrow-back" size={35} color="white" style={styles.iconoIzquierda} onPress={goToTwentyfour}/>
           </TouchableOpacity>
         </View>
         <View style={styles.iconoCentroContainer}>
@@ -37,7 +46,7 @@ export default function Twentyfive({ navigation }) {
         <Text style={styles.label}>Número de tarjeta</Text>
         <View style={styles.tarjetaContainer}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>+</Text>
+            <Text style={styles.buttonText} onPress={goToTwentysix}>+</Text>
           </TouchableOpacity>
         </View>
 

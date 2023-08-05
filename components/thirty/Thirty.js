@@ -1,6 +1,8 @@
 
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
+
 export default function Thirty({ navigation }) {
 
   const handleButtonPress = () => {
@@ -15,28 +17,15 @@ export default function Thirty({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <View style={styles.imageContainer}>
         <Text style={styles.productName1}>Notificaciones</Text>
         <View style={styles.productContainer}>
           <Image source={require('../../assets/filetepescado.png')} style={styles.productImage} resizeMode="contain" />
           <View style={styles.productInfo}>
-
-            <Text style={styles.productName}>! Tu pedido ya esta en proceso ¡</Text>
+            <View style={styles.cont}>
+              <Text style={styles.productName}>!Tu pedido ya esta en proceso¡</Text>
+            </View>
           </View>
         </View>
         <View style={[styles.line, styles.longLine]} />
@@ -200,6 +189,7 @@ const styles = StyleSheet.create({
   productImage: {
     width: 80,
     height: 80,
+    top: -3,
   },
   productInfo: {
     marginLeft: 16,
@@ -215,6 +205,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#B9B9B7',
+    top: 20,
+    right: -10,
   },
   productPrice: {
     fontSize: 14,
@@ -231,5 +223,13 @@ const styles = StyleSheet.create({
   },
   longLine: {
     width: '90%',
+  },
+  cont: {
+    borderWidth: 0.2,
+    width: 299,
+    height: 69,
+    right: 21,
+    borderColor: '#B5B2B2',
+    top: -2,
   },
 });

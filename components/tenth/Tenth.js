@@ -1,6 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 
 export default function Tenth({ navigation }) {
 
@@ -16,28 +16,12 @@ export default function Tenth({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/restaurante.png')} style={styles.image} resizeMode="stretch" />
-        <Image source={require('../../assets/callejera.png')} style={styles.image} resizeMode="stretch" />
+        <Image source={require('../../assets/callejera.png')} style={styles.image2} resizeMode="stretch" />
       </View>
-
       <View style={styles.inputContainer}>
-
         <View style={styles.inputmike}>
           <TextInput style={styles.input} placeholder="Colombia" />
           <View style={styles.buttonContainer}>
@@ -49,8 +33,6 @@ export default function Tenth({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-
-
         <View style={styles.inputmike}>
           <TextInput style={styles.input} placeholder="lucia@gmail.com" />
           <TouchableOpacity style={styles.button} onPress={() => console.log('Editar')}>
@@ -109,7 +91,7 @@ export default function Tenth({ navigation }) {
       </View>
 
     </View>
-    
+
   );
 }
 const styles = StyleSheet.create({
@@ -147,8 +129,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   image: {
+    width: '102%',
+    height: '28%',
+    top: -1,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  image2: {
     width: '100%',
     height: '28%',
     resizeMode: 'contain',

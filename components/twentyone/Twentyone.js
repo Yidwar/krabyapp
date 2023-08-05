@@ -1,19 +1,18 @@
-import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity, ImageBackground } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity, ImageBackground, useState } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-
+import Header from '../../components/header/Header';
 export default function Twentyone({ navigation }) {
 
   const handleButtonPress = () => {
     console.log('Botón presionado');
   };
 
-  const goToTwentytwo = () => {
-    navigation.navigate('Veinte dos');
-  };
-
   const goToTwentyone = () => {
     navigation.navigate('Veinte uno');
+  };
+
+  const goToTwentytwo = () => {
+    navigation.navigate('Veinte dos');
   };
 
   const goToTwentythree = () => {
@@ -31,21 +30,7 @@ export default function Twentyone({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <TouchableOpacity>
-            <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header />
       <ImageBackground
         source={require('../../assets/pizzacont.png')}
         style={styles.imagen}>
@@ -54,16 +39,6 @@ export default function Twentyone({ navigation }) {
           style={styles.imagen1}
         />
       </ImageBackground>
-
-
-
-
-
-
-
-
-
-
       <View style={styles.imagenmikeContainer}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -84,31 +59,6 @@ export default function Twentyone({ navigation }) {
             <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
           </TouchableOpacity>
         </View>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <View style={styles.orangeRow}>
           <Text style={styles.subtotalText}></Text>
           <Text style={styles.priceText}>ABIERTO AHORA</Text>
@@ -197,7 +147,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: '50%',
     resizeMode: 'cover',
-    marginLeft: 16,
+    marginLeft: 24,
   },
   bucancelar: {
     backgroundColor: 'orange',
