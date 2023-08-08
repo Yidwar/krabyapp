@@ -25,7 +25,6 @@ export default function Twentytwo({ navigation }) {
   };
 
   const renderStars = (rating) => {
-    onst [selectedStars, setSelectedStars] = useState(0);
     const filledStars = Math.floor(rating);
     const halfStar = rating - filledStars >= 0.5;
     const emptyStars = 5 - filledStars - (halfStar ? 1 : 0);
