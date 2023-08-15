@@ -2,11 +2,23 @@ import React from 'react';
 import { StyleSheet, StatusBar, View, Text, TextInput, TouchableOpacity, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../../components/header/Header';
+//import React, { useEffect, useState } from 'react';
 
 export default function Twentyfive({ navigation }) {
+ 
+
   const goToTwentysix = () => {
-    navigation.navigate('Veinte seis');
+    console.log('Nombre:', nombre);
+    console.log('Número de celular:', numeroCelular);
+    console.log('Correo electrónico:', correoElectronico);
+    console.log('Número de tarjeta:', numeroTarjeta);
+
+    // Aquí puedes realizar otras acciones, como enviar los datos a una API o guardarlos en AsyncStorage, etc.
+
+    //navigation.navigate('Veinte seis');
   }
+  
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
@@ -19,19 +31,22 @@ export default function Twentyfive({ navigation }) {
           </TouchableOpacity>
         </View>
         <View style={styles.iconoCentroContainer}>
-          <Ionicons name="person-circle-outline" size={70} color="white" style={styles.iconoCentro} />
+          <Ionicons name="person-circle-outline" size={70} color="white" style={styles.iconoCentro}  />
         </View>
       </View>
 
       <View style={styles.otroContenedor}>
         <Text style={styles.label}>Nombre y apellido</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input}  value={nombre}
+        onChangeText={setNombre}/>
 
         <Text style={styles.label}>Número de celular</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={numeroCelular}
+        onChangeText={setNumeroCelular} />
 
         <Text style={styles.label}>Correo electrónico</Text>
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={correoElectronico}
+        onChangeText={setCorreoElectronico} />
 
 
         <Text style={styles.label}>Número de tarjeta</Text>
@@ -41,7 +56,8 @@ export default function Twentyfive({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <TextInput style={styles.input} />
+        <TextInput style={styles.input} value={correoElectronico}
+        onChangeText={setCorreoElectronico}/>
       </View>
 
       <View style={{ marginTop: -210, marginLeft: 280, marginRight: 38 }}>

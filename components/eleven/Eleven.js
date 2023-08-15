@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, Statu
 import Header from '../../components/header/Header';
 import { CheckBox } from 'react-native-elements';
 
-export default function Eleven({navigation}) {
+export default function Eleven({ navigation }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -46,15 +46,11 @@ export default function Eleven({navigation}) {
                 </View>
               </View>
               <TouchableOpacity style={styles.bulis} onPress={handleButtonPress}>
-                <Text style={styles.bulisto}>¡Listo!</Text>
+                <Text style={styles.bulisto} onPress={goToTwelve}>¡Listo!</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>
         </View>
-
-      </View>
-      <View style={{ marginTop: -150, marginLeft: 280, marginRight: 40 }}>
-        <Button title="Siguiente" onPress={goToTwelve} />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
-
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MapView, { Marker } from "react-native-maps";
+import { Dimensions } from "react-native";
 
 export default function Twentyone({ navigation }) {
 
@@ -12,6 +13,18 @@ export default function Twentyone({ navigation }) {
   const goToTwentytwo = () => {
     navigation.navigate('Veinte dos');
   }
+  const LATITUDE = 37.7749; // Definición de la propiedad LATITUDE
+  const LONGITUDE = 122.4194; // Definición de la propiedad LONGITUDE
+
+// Luego, podrías usar estas propiedades en tu código
+  const location = {
+  latitude: LATITUDE,
+  longitude: LONGITUDE,
+    };
+
+// O directamente acceder a ellas
+    console.log('Latitude:', LATITUDE);
+    console.log('Longitude:', LONGITUDE);
 
   return (
     <View style={styles.container}>
@@ -37,19 +50,38 @@ export default function Twentyone({ navigation }) {
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.paragraph}>
-            Horarios de atencion {"\n"} Lunes a Viernes de 10:00 am - 9:00 pm
+            Horarios de atención {"\n"}
           </Text>
-          <Text style={styles.paragraph}>
-            Tipos de comida {"\n"} Comida asada, fria, ahumada jdshjdhjhsdj djhsdjhd {"\n"} husdhuuhsuhdu dshudshudhudshud
+          <Text style={styles.texto1}>
+            Lunes a Viernes de 10:00 am - 9:00 pm
           </Text>
+          <Text style={styles.paragraph1}>
+            Tipos de comida{"\n"}
+          </Text>
+          <Text style={styles.texto2}>
+            Comida asada, frita, ahumada.
+          </Text>
+          <Text style={styles.paragraph2}>
+            Ubicación
+          </Text>
+          <MapView
+  style={styles.map}
+  initialRegion={{
+    latitude: LATITUDE, // Ingresa la latitud deseada
+    longitude: LONGITUDE, // Ingresa la longitud deseada
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  }}
+>
+  <Marker
+    coordinate={{ latitude: LATITUDE, longitude: LONGITUDE }} // Mismo valor que initialRegion
+    title="Ubicación del Restaurante"
+    description="Descripción de la ubicación"
+  />
+</MapView>
         </View>
-        <Image source={require('../../assets/ubicacion.png')} style={styles.imagen1} resizeMode="stretch" />
       </View>
-
-      <View style={{ marginTop: -15, marginLeft: 280, marginRight: 40 }}>
-        <Button title="Siguiente" onPress={goToTwentytwo} />
-      </View>
-    </View>
+    </View> //CIERRA
   );
 }
 
@@ -87,21 +119,16 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
-    height: '40%',
+    height: '32%',
     resizeMode: 'contain',
   },
   imagen1: {
     width: '95%',
-
     height: '15%',
     resizeMode: 'contain'
-
   },
-
-
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
@@ -109,22 +136,17 @@ const styles = StyleSheet.create({
     marginTop: -50,
     width: '80%',
     marginLeft: 40,
-
   },
   butextcancelar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#9DBA0C',
     marginLeft: 20,
-
   },
   orangeRow: {
     flexDirection: 'row',
@@ -149,11 +171,36 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     paddingHorizontal: 20,
-
   },
   paragraph: {
-
-    fontSize: 11,
+    fontSize: 14,
     lineHeight: 24,
+    fontWeight: 'bold',
+    color: '#696565',
+  },
+  texto1: {
+    marginTop: -5,
+    bottom: 13,
+  },
+  texto2: {
+    marginTop: -5,
+    bottom: 13,
+  },
+  paragraph1: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontWeight: 'bold',
+    color: '#696565',
+  },
+  paragraph2: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontWeight: 'bold',
+    color: '#696565',
+  },
+  map: {
+    flex: 1,
+    width: '200%',
+    height: 300, // Ajusta la altura del mapa según tus necesidades
   },
 });

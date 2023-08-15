@@ -3,12 +3,23 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpa
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Swiper from 'react-native-swiper';
 import { ScrollView } from 'react-native';
-
+import Cabezera from '../cabezera.js/Cabezera';
 export default function Thirteen({route, navigation }) {
-  const {claveid} =route.params
+  const {claveid, cartCount} =route.params
 
     const [restaurante, setRestaurante] = useState([]);
+    //const [cartCount, setCartCount] = useState(0); // Inicializa el estado con 0
+
+    useEffect(() => {
+      // Actualiza el estado con el valor recibido desde el componente anterior
+      if (route.params && route.params.cartCount) {
+        setCartCount(route.params.cartCount);
+      }
+    }, [route.params]);
+
+  
     useEffect(() => {
         async function apires() {
           try {
@@ -23,7 +34,6 @@ export default function Thirteen({route, navigation }) {
         apires()
     }, []);
 
-  
 
   const goToFifteen = (id) => {
     console.log("THISMENU",id);
@@ -33,26 +43,20 @@ export default function Thirteen({route, navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
-      <View style={styles.header}>
+      <Cabezera navigation={navigation} cartCount={cartCount} />
 
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-        </View>
-      </View>
-      
       <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/centroscomerciales.png')} style={styles.imagen} resizeMode="stretch" />
+        {/* CENTROS COMERCIALES */}
+        <View style={styles.carouselContainer}>
+          <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}>
+            <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
+            <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
+          </Swiper>
+        </View>
 
         <Image source={require('../../assets/pizza1.png')} style={styles.imagen1} resizeMode="stretch" />
-        <Text style={styles.subTitle}>Selecciona el restaurante mike yidwar</Text>
-        </View>
+        <Text style={styles.subTitle}>Selecciona el restaurante mike yidwar mike</Text>
+      </View>
       <ScrollView>
       <View style={styles.cardContainer}>
         {restaurante.map((item) => (
@@ -60,6 +64,7 @@ export default function Thirteen({route, navigation }) {
         <Image source={{ uri: item.foto_baner }} style={styles.cardImage} />
         <Text style={styles.cardText}>{item.nombre_restaurante}</Text>
         <Text style={styles.cardText}>Horario: {item.horario}</Text>
+        <Text style={styles.cardText}>{item.descripcion}</Text>
         </TouchableOpacity>
         ))}
         </View>
@@ -67,7 +72,7 @@ export default function Thirteen({route, navigation }) {
       
       
     </View>
-    
+
   );
 }
 
@@ -89,7 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -105,7 +109,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   imagen: {
     width: '100%',
     height: '50%',
@@ -121,7 +124,6 @@ const styles = StyleSheet.create({
     height: '45%',
     resizeMode: 'contain',
   },
-
   bucancelar: {
     backgroundColor: 'orange',
     borderRadius: 30,
@@ -129,17 +131,13 @@ const styles = StyleSheet.create({
     marginTop: -50,
     width: '80%',
     marginLeft: 40,
-
   },
   butextcancelar: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
-
-
   subTitle: {
     fontSize: 14,
     color: '#000',
@@ -152,7 +150,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginTop: 150,
   },
   card: {
     width: '30%',
@@ -172,5 +170,19 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 14,
     marginBottom: 5,
+  },
+  carouselContainer: {
+    width: 460,
+    height: 200,
+    alignItems: 'flex-end',
+    marginLeft: 0,
+  },
+  carouselImage: {
+    width: '90%',
+    height: '90%',
+    resizeMode: 'cover',
+  },
+  paginationStyle: {
+    marginLeft: -50,
   },
 });

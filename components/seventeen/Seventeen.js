@@ -4,11 +4,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from 'react-native';
+import Cabezera from '../cabezera.js/Cabezera';
 
 
 
-export default function Seventeen({ navigation }) {
- 
+export default function Seventeen({ navigation, route }) {
+  const [cartCount, setCartCount] = useState(0); // Inicializa el estado con 0
+
+  useEffect(() => {
+    // Actualiza el estado con el valor recibido desde el componente anterior
+    if (route.params && route.params.cartCount) {
+      setCartCount(route.params.cartCount);
+    }
+  }, [route.params]);
   const handleButtonPress = () => {
 
     console.log('Botón presionado');
@@ -33,6 +41,7 @@ export default function Seventeen({ navigation }) {
     const loadCartProducts = async () => {
       try {
         const jsonCart = await AsyncStorage.getItem('cartProducts');
+       // console.log(jsonCart);
         if (jsonCart !== null) {
           const cart = JSON.parse(jsonCart);
           setCartProductos(cart);
@@ -92,41 +101,53 @@ export default function Seventeen({ navigation }) {
     return uniqueCart;
   }, []);
   
-  
+    const removeProduct = (productId) => {
+    const updatedCart = cartProductos.filter((product) => product.id !== productId);
+    setCartProductos(updatedCart);
+      };
 
- 
+       // Función para eliminar todos los productos del carrito
+  const removeAllProducts = async () => {
+    try {
+      await AsyncStorage.removeItem('cartProducts');
+      setCartProductos([]); // Limpiamos el carrito en el estado
+      setProductCounts({}); // Limpiamos los conteos de productos en el estado
+    } catch (error) {
+      console.error('Error al eliminar los productos del AsyncStorage:', error);
+    }
+  };
+
+
   return (
+    
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
       
-      <View style={styles.header}>
+      <Cabezera navigation={navigation} cartCount={cartCount}/>
 
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
 
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-        </View>
-      </View>
+
+    
       
-      <View style={styles.imageContainer}>
+      
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
-
-      </View>
+        <ImageBackground source={require('../../assets/fiorella.png')}
+              style={styles.imagen1}
+            />
+      
 
 
 
       
+      <ScrollView>
       <View style={styles.inputContainer}>
-
+      
         <View style={styles.inputmike}>
-
-          <Text style={styles.subTitle}>Conoce tu orden mike</Text>
-          <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
+          <Text style={styles.subTitle}>Conoce tu orden</Text>
+          <TouchableOpacity onPress={removeAllProducts}>
+            <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
+          </TouchableOpacity>
+           
         </View>
 
         
@@ -149,6 +170,9 @@ export default function Seventeen({ navigation }) {
               <TouchableOpacity style={styles.button} onPress={() => incrementProduct(product.id)}>
                 <Icon name="add-circle" size={30} color="#C2D177" />
               </TouchableOpacity>
+              <TouchableOpacity onPress={() => removeProduct(product.id)}>
+              <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} />
+            </TouchableOpacity>
             </View>
           </View>
         ))}
@@ -161,13 +185,13 @@ export default function Seventeen({ navigation }) {
               </View>
               <Text style={styles.subtitulo}>6 porciones</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
+            <TouchableOpacity style={styles.bumike2} onPress={() => console.log('Editar')}>
               <View style={styles.parrafo1}>
                 <Text style={styles.titulomike}>Mediana</Text>
               </View>
               <Text style={styles.subtitulo}>12 porciones</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.bumike1} onPress={() => console.log('Editar')}>
+            <TouchableOpacity style={styles.bumike2} onPress={() => console.log('Editar')}>
               <View style={styles.parrafo1}>
                 <Text style={styles.titulomike}>Familiar</Text>
               </View>
@@ -179,25 +203,20 @@ export default function Seventeen({ navigation }) {
           <Text style={styles.subtotalText}>Subtotal</Text>
           <Text style={styles.priceText}>${total}</Text>
         </View>
-        
-        <Text>
-          Si deseas que tengamos en cuenta tus comentarios para{"\n"}
-          la preparación, escríbenos.
-        </Text>
-        <TextInput
-          placeholder='Quiero mi filete con mas salsas'
-          style={styles.textInput}
-        />
-      </View>
+        <Text style={styles.texto}>Si deseas que tengamos en cuenta tus comentarios para{"\n"}la preparación, escríbenos.</Text>
+        <TextInput placeholder='Quiero mi filete con mas salsa' style={styles.textInput} />
+       
+      
+      
      
       <TouchableOpacity style={styles.bucancelar} onPress={handleButtonPress}>
-        <Text style={styles.butextcancelar}>Pagar</Text>
+        <Text style={styles.butextcancelar} onPress={goToEighteen}>Pagar</Text>
       </TouchableOpacity>
-
-      <View style={{ marginTop: 10, marginLeft: 280, marginRight: 20 }}>
-        <Button title="Siguiente" onPress={goToEighteen} />
+      
       </View>
+      </ScrollView>
     </View>
+    
   );
   
 };
@@ -221,7 +240,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   icon: {
     marginRight: 10,
   },
@@ -231,14 +249,14 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   textInput: {
-    borderWidth: 1,
     borderColor: '#fff',
     padding: 10,
-    width: '80%',
+    width: '100%',
     height: 50,
-    marginTop: 20,
-    borderRadius: 30,
-    backgroundColor: '#fff',
+    marginTop: 10,
+    borderRadius: 7,
+    backgroundColor: '#E3E1E1',
+    elevation: 5,
   },
   logo: {
     flex: 1,
@@ -247,36 +265,50 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignItems: 'center',
   },
-
   image: {
-    width: '100%',
-    height: '45%',
+    width: '110%',
+    height: '30%',
     resizeMode: 'contain',
+    marginLeft: -10,
+    marginTop: -7,
+  },
+  imagen1: {
+    position: 'absolute',
+    bottom: 255,
+    width: '45%',
+    height: '40%',
+    resizeMode: 'cover',
+    marginLeft: 158,
   },
   inputContainer: {
-
-    marginTop: -150,
+    marginTop: 10,
     paddingHorizontal: 20,
+    
   },
   inputmike: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
     borderColor: '#fff',
     borderRadius: 5,
     paddingHorizontal: 10,
     marginHorizontal: 20,
     marginVertical: 2,
+    marginTop: 6,
   },
   inputIcon: {
-    marginRight: 10,
+    marginRight: -90,
     color: '#888',
+    marginBottom: -5,
+    marginTop: -20,
+    marginLeft: 22,
   },
   subTitle: {
     flex: 1,
-    color: '#888',
+    color: 'gray',
+    fontWeight: 'bold',
+    marginLeft: -28,
+    marginTop: -15,
   },
-
   button: {
     backgroundColor: '#FFf',
     paddingHorizontal: 3,
@@ -296,10 +328,24 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     marginVertical: -10,
     marginHorizontal: 20,
-    backgroundColor: '#E9E9E9',
+    backgroundColor: 'white',
     borderRadius: 5,
-    marginLeft: 5,
-
+    marginLeft: -34,
+    width: 120,
+    elevation: 5,
+  },
+  bumike2: {
+    backgroundColor: '#ADD8E6',
+    paddingHorizontal: 3,
+    paddingVertical: 6,
+    borderRadius: 1,
+    marginVertical: -10,
+    marginHorizontal: 20,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginLeft: -10,
+    width: 120,
+    elevation: 5,
   },
   buttonText: {
     color: 'orange',
@@ -327,19 +373,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bucancelar: {
-    backgroundColor: '#C2D177',
+    backgroundColor: '#bcc404',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
-    width: '80%',
-    marginLeft: 40,
+    marginTop: 30,
+    width: '60%',
+    marginLeft: 90,
   },
   butextcancelar: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',
-
   },
   textomikeContainer: {
     flexDirection: 'column',
@@ -352,13 +397,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   titulomike: {
-
     color: '#fc4b08',
     textAlign: 'center',
+    marginLeft: 30,
   },
   subtitulo: {
     color: '#888',
     textAlign: 'center',
+    marginTop: -7,
   },
   productContainer: {
     flexDirection: 'row',
@@ -366,8 +412,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   productImage: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 70,
+    borderRadius: 10,
   },
   productInfo: {
     marginLeft: 16,
@@ -379,7 +426,7 @@ const styles = StyleSheet.create({
   },
   productPrice: {
     fontSize: 14,
-    color: '#888',
+    color: 'black',
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -396,22 +443,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#e4b414',
     padding: 10,
     marginVertical: 18,
-    width: '100%',
+    width: '111%',
+    marginLeft: -20,
+    marginTop: 30,
   },
   subtotalText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'left',
+    marginLeft: 5,
   },
   priceText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'right',
+    marginRight: 5,
   },
   orangeRowText: {
     color: 'orange',
@@ -425,5 +476,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginTop: 10,
     marginBottom: 20,
+  },
+  texto:{
+    paddingHorizontal: 12,
+    fontSize: 14,
+    color: 'gray',
+    marginLeft: -12,
+  },
+  imageContainer: {
+    marginTop: 10,
+    paddingHorizontal: 10,
+    paddingLeft: 10,
+    backgroundColor: 'red',
   },
 });
