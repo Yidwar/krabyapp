@@ -1,4 +1,3 @@
-
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -15,7 +14,7 @@ export default function Twenty({navigation}) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,

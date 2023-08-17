@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, StatusBar, Button } from 'react-native';
 import Header from '../../components/header/Header';
 import { CheckBox } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 export default function Eleven({ navigation }) {
   const [isChecked, setIsChecked] = useState(false);

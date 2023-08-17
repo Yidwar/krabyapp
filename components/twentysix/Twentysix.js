@@ -11,7 +11,12 @@ export default function Twentysix({ navigation }) {
 
   const goToTwentyeight = () => {
     navigation.navigate('Veinte ocho');
-  }
+  };
+
+  const goToTwentyfive = () => {
+    navigation.navigate('Veinte cinco');
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#E26800" barStyle="light-content" />
@@ -20,7 +25,7 @@ export default function Twentysix({ navigation }) {
       <View style={styles.contenido}>
         <View style={styles.iconoIzquierdaContainer}>
           <TouchableOpacity style={styles.iconoIzquierdaButton} onPress={handleIconPress}>
-              <Ionicons name="md-arrow-back" size={35} color="#7B7B7B" style={styles.iconoIzquierda} />
+            <Ionicons name="md-arrow-back" size={35} color="#7B7B7B" style={styles.iconoIzquierda} onPress={goToTwentyfive} />
           </TouchableOpacity>
         </View>
         <View style={styles.gifContainer}>

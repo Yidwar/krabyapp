@@ -8,8 +8,8 @@ export default function Eighth({ navigation }) {
     console.log('Botón presionado');
   };
 
-  const goToTenth = () => {
-    navigation.navigate('Decima');
+  const goToNine = () => {
+    navigation.navigate('Novena');
   }
 
   return (
@@ -21,7 +21,7 @@ export default function Eighth({ navigation }) {
           <Text style={styles.subTitle}>Necesitamos de tu permiso para localizar tu móvil y brindarte una mejor experiencia</Text>
 
           <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-            <Text style={styles.buttonText} onPress={goToTenth}>Aceptar</Text>
+            <Text style={styles.buttonText} onPress={goToNine}>Aceptar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button1} onPress={handleButtonPress}>
             <Text style={styles.buttonText1}>Cancelar</Text>
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: -3,
     width: '80%',
+    height: 55,
     paddingHorizontal: 110,
   },
   button1: {
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 13,
     width: '80%',
+    height: 55,
     paddingHorizontal: 105,
     marginBottom: 10,
   },
@@ -107,9 +109,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: -5,
+    marginTop: -8,
     width: '90%',
-    marginTop: 2,
+    marginTop: 7,
   },
   buttonText1: {
     color: 'white',
@@ -125,6 +127,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingVertical: 305,
-    paddingHorizontal: 62,
+    paddingHorizontal: 69,
   },
 });

@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: -7
     },
     overlay: {
         flex: 1,
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         paddingVertical: 30,
         paddingHorizontal: 100,
+        marginTop: -1,
     },
     text: {
         color: 'white',

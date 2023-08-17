@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar} from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, Linking} from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 export default function Fifth({ navigation }) {
@@ -17,6 +17,11 @@ export default function Fifth({ navigation }) {
   };
   const goToSixth = () => {
     navigation.navigate('Sexta');
+  };
+
+  const handleGoogleLogin = () => {
+    const googleUrl = 'https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmyaccount.google.com%3Futm_source%3Daccount-marketing-page%26utm_medium%3Dgo-to-account-button&ifkv=AeDOFXgV1HkhzaU9_rddSKlZgDD55ZFEFPpCSIRPZhG0xEiEUTHftBmXmeRlcufVBUthFFT8y_S7CA&service=accountsettings&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-502614042%3A1690904149843267';
+    Linking.openURL(googleUrl);
   }
 
   return (
@@ -26,7 +31,7 @@ export default function Fifth({ navigation }) {
         <View style={styles.overlay}>
           <Image source={require('../../assets/logo.png')} style={[styles.logo, { marginTop: -200 }]} />
           <Text style={styles.subTitle}>Ingresa tu número de teléfono{"\n"} o con tu correo electrónico</Text>
-          <TextInput placeholder='Ingresa con tu numero o correo' style={styles.textInput}
+          <TextInput placeholder='Ingresa con tu número o correo' style={styles.textInput}
           />
 
           <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
@@ -44,9 +49,10 @@ export default function Fifth({ navigation }) {
             </View>
           </View>
           <Text style={styles.subTitle1}>Iniciar sesión con Google</Text>
-          <View style={styles.container1}>
+          <TouchableOpacity style={styles.container1} onPress={handleGoogleLogin}>
             <Image source={require('../../assets/google.png')} style={[styles.logo1, { marginTop: 50 }]} />
-          </View>
+          </TouchableOpacity>
+
           <TouchableOpacity style={styles.skipButton} onPress={handleSkip}>
             <Text style={styles.skipButtonText}>Quiero registrarme</Text>
           </TouchableOpacity>
@@ -67,7 +73,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    paddingVertical: 270,
+    paddingVertical: 350,
     paddingHorizontal: 98,
   },
   logo: {
@@ -170,8 +176,8 @@ const styles = StyleSheet.create({
   },
   skipButton: {
     position: 'absolute',
-    top: 70,
-    right: -10,
+    top: 170,
+    right: -20,
     backgroundColor: 'transparent',
     alignItems: 'center',
     paddingVertical: 0,
@@ -182,7 +188,7 @@ const styles = StyleSheet.create({
   skipButtonText: {
     fontSize: 15,
     color: "white",
-    width: 130,
+    width: 155,
     textAlign: 'center',
     marginLeft: 50,
   },

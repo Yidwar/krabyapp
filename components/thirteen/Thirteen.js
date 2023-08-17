@@ -1,13 +1,13 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Swiper from 'react-native-swiper';
 import { ScrollView } from 'react-native';
 import Cabezera from '../cabezera.js/Cabezera';
 export default function Thirteen({route, navigation }) {
-  const {claveid, cartCount} =route.params
+  const {claveid, cartCount} =route.params;
 
     const [restaurante, setRestaurante] = useState([]);
     //const [cartCount, setCartCount] = useState(0); // Inicializa el estado con 0
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,

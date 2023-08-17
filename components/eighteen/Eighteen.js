@@ -1,6 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, useState, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 
 export default function Eighteen({ navigation }) {
 
@@ -15,20 +15,8 @@ export default function Eighteen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-        </View>
-      </View>
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
+      <Header />
       <View style={styles.imageContainer}>
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
         <View style={styles.productContainer}>
@@ -38,13 +26,12 @@ export default function Eighteen({ navigation }) {
             <Text style={styles.productPrice2}>Pago de compra online</Text>
             <Text style={styles.productName}>$ 10.000 COP</Text>
           </View>
-
         </View>
       </View>
 
       <View style={styles.inputContainer}>
         <View style={styles.inputmike2}>
-        <Image source={require('../../assets/colombia.png')} style={{ width: 20, height: 20 }} />
+          <Image source={require('../../assets/colombia.png')} style={{ width: 20, height: 20 }} />
           <TextInput style={styles.inputdos} placeholder="Colombia" />
           <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.bumike} onPress={() => console.log('Editar')}>
@@ -111,7 +98,7 @@ export default function Eighteen({ navigation }) {
         <Text style={styles.butextcancelar}>Cancelar</Text>
       </TouchableOpacity>
 
-      <View style={{ marginTop: -18, marginLeft: 280, marginRight: 20 }}>
+      <View style={{ marginTop: 1, marginLeft: 280, marginRight: 20 }}>
         <Button title="Siguiente" onPress={goToNineteen} />
       </View>
 
@@ -135,7 +122,7 @@ const styles = StyleSheet.create({
     marginLeft: 40,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -166,9 +153,11 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: '100%',
-    height: '28%',
+    width: '105%',
+    height: '29%',
     resizeMode: 'contain',
+    alignSelf: 'center',
+    top: -3,
   },
   inputContainer: {
 
@@ -196,7 +185,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
     backgroundColor: '#E1E1E1',
   },
-  space:{
+  space: {
     marginTop: 17,
   },
   inputIcon: {
@@ -208,7 +197,7 @@ const styles = StyleSheet.create({
   input1: {
     marginLeft: 12,
   },
-  inputdos:{
+  inputdos: {
     marginLeft: 8,
   },
   button: {
@@ -240,7 +229,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginLeft: 185,
+    marginLeft: 186,
   },
   inputContainer3: {
     flexDirection: 'row',
@@ -260,7 +249,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
+    marginTop: 45,
     width: '80%',
     marginLeft: 40,
   },

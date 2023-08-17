@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpa
 import { CheckBox } from 'react-native-elements';
 import React, { useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
+import { ScrollView } from 'react-native';
 
 export default function Sixth({ navigation }) {
   const [nombreApellido, setNombreApellido] = useState('');
@@ -68,7 +69,7 @@ export default function Sixth({ navigation }) {
 
 
   return (
-
+    <ScrollView>
     <View style={styles.container}>
       <ImageBackground source={require('../../assets/imagen.png')} style={styles.backgroundImage}>
         <View style={styles.overlay}>
@@ -129,6 +130,7 @@ export default function Sixth({ navigation }) {
       </ImageBackground>
 
     </View>
+    </ScrollView>
   );
 }
 
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     alignItems: 'center',
-    paddingVertical: 80,
+    paddingVertical: 350,
     paddingHorizontal: 75,
   },
   logo: {

@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     marginLeft: 15,
-    marginTop: -10,
+    marginTop: -60,
   },
   checkboxContainer: {
     flexDirection: 'row',

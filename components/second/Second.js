@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   skipButton: {
     position: 'absolute',
     top: 30,
-    right: 30,
     backgroundColor: 'transparent',
     alignItems: 'center',
     paddingVertical: 0,

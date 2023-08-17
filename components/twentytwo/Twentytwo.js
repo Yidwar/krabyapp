@@ -12,14 +12,27 @@ export default function Twentytwo({ navigation }) {
     console.log('Icono presionado');
   };
 
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno');
+  };
+
+  const goToTwentytwo = () => {
+    navigation.navigate('Veinte dos');
+  };
+
   const goToTwentythree = () => {
     navigation.navigate('Veinte tres');
-  }
+  };
 
   const renderStars = (rating) => {
     const filledStars = Math.floor(rating);
     const halfStar = rating - filledStars >= 0.5;
     const emptyStars = 5 - filledStars - (halfStar ? 1 : 0);
+
+    const handleStarPress = (starIndex) => {
+      setSelectedStars(starIndex + 1);
+    };
+
     return (
       <View style={styles.starContainer}>
         {[...Array(filledStars)].map((_, index) => (
@@ -88,7 +101,7 @@ export default function Twentytwo({ navigation }) {
               style={styles.imagen1}
             />
 
-            <TouchableOpacity style={styles.iconContainerdos} onPress={handleIconPress}>
+            <TouchableOpacity onPress={handleIconPress}>
               <Image
                 source={require('../../assets/izquierda.png')}
                 style={styles.icon2} />
@@ -97,21 +110,20 @@ export default function Twentytwo({ navigation }) {
             <View style={styles.buttonContainer}>
               <TouchableOpacity
                 style={[styles.button, { height: 35 }]}
-                onPress={() => handleButtonPress('Boton 1')}
-              >
-                <Text style={styles.buttonLabel}>Descripción</Text>
+                onPress={() => handleButtonPress('Boton 1')}>
+                <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={[styles.button, styles.button2]}
-                onPress={() => handleButtonPress('Boton 2')}
-              >
-                <Text style={styles.buttonLabel}>Calificación</Text>
+                onPress={() => handleButtonPress('Boton 2')} >
+                <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
               </TouchableOpacity>
+
               <TouchableOpacity
                 style={[styles.button, styles.button3]}
-                onPress={() => handleButtonPress('Boton 3')}
-              >
-                <Text style={styles.buttonLabel}>Politicas</Text>
+                onPress={() => handleButtonPress('Boton 3')}>
+                <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>
@@ -185,7 +197,7 @@ export default function Twentytwo({ navigation }) {
                   <TextInput
                     style={styles.input}
                     placeholder="Escribe tu comentario" />
-                  <TouchableOpacity style={styles.iconContainer} onPress={handleIconPress}>
+                  <TouchableOpacity onPress={handleIconPress}>
                     <Image
                       source={require('../../assets/envio.png')}
                       style={styles.icon} />
@@ -276,9 +288,9 @@ const styles = StyleSheet.create({
   },
   imagen1: {
     position: 'absolute',
-    bottom: 65,
+    bottom: 60,
     width: '50%',
-    height: '50%',
+    height: '60%',
     resizeMode: 'cover',
     marginLeft: 15,
   },
@@ -303,7 +315,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 23,
+    marginTop: 22,
     width: 100,
     textAlign: 'center',
   },
@@ -320,11 +332,13 @@ const styles = StyleSheet.create({
     marginLeft: 200,
     textAlign: 'center',
     width: 85,
+    marginTop: 23,
   },
   buttonLabel: {
     color: '#fff',
     fontSize: 11,
     fontWeight: 'bold',
+    marginTop: -0.5,
   },
   containerCircle: {
     alignItems: 'center',

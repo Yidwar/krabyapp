@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/header/Header';
 import Swiper from 'react-native-swiper';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Twelve({ navigation }) {
 
@@ -30,7 +31,7 @@ export default function Twelve({ navigation }) {
     console.log('Botón presionado');
   };
   const goToThirteen = (id) => {
-    console.log("THIS",id);
+    
     navigation.navigate('Trece',{claveid:id});
   }
 
@@ -53,8 +54,10 @@ export default function Twelve({ navigation }) {
       
       {/* CARROUSEL */}
       <View style={styles.carouselContainer}>
-        <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle} 
-        dot={<View style={styles.paginationDot} />} activeDot={<View style={styles.activePaginationDot} />}>
+        <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}
+          dot={<View style={styles.paginationDot} />} activeDot={<View style={styles.activePaginationDot} />}>
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
+          <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
           <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
           <Image source={require("../../assets/cocacola.png")} style={styles.carouselImage} />
         </Swiper>
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     borderRadius: 30,
     padding: 10,
-    marginTop: 20,
+    marginTop: 200,
     marginHorizontal: 20,
   },
   buttonText: {
@@ -210,16 +213,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   paginationDot: {
-    width: 16, 
-    height: 3, 
-    borderRadius: 2, 
-    backgroundColor: '#fc4b08', 
-    marginHorizontal: 3, 
+    width: 16,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: '#fc4b08',
+    marginHorizontal: 4,
   },
   activePaginationDot: {
-    width: 16, 
-    height: 4, 
-    borderRadius: 2, 
-    marginHorizontal: 3, 
+    width: 16,
+    height: 4,
+    borderRadius: 2,
+    marginHorizontal: 4,
+    backgroundColor: '#cccccc',
   },
 });

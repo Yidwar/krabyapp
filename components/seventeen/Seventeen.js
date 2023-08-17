@@ -1,5 +1,6 @@
 
 import { StyleSheet, Text, View, TextInput, ImageBackground, Image, TouchableOpacity, CheckBox, StatusBar, Button } from 'react-native';
+import Header from '../../components/header/Header';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -218,15 +219,14 @@ export default function Seventeen({ navigation, route }) {
     </View>
     
   );
-  
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,

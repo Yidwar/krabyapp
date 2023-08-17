@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, Image, StatusBar, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import MapView, { Marker } from "react-native-maps";
-import { Dimensions } from "react-native";
-
+import { StyleSheet, Text, View, Image, StatusBar, Button, TouchableOpacity, ImageBackground, useState } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import Header from '../../components/header/Header';
 export default function Twentyone({ navigation }) {
 
   const handleButtonPress = () => {
-
     console.log('Botón presionado');
+  };
+
+  const goToTwentyone = () => {
+    navigation.navigate('Veinte uno');
   };
 
   const goToTwentytwo = () => {
@@ -28,22 +29,36 @@ export default function Twentyone({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
-      <View style={styles.header}>
-
-        <View style={styles.iconsContainer}>
-          <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-
-        </View>
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
-        <View style={styles.iconsContainer}>
-          <Icon name="location-outline" size={30} color="white" style={styles.icon} />
-          <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
-        </View>
-      </View>
+      <StatusBar backgroundColor="#E26800" barStyle="light-content" />
+      <Header />
+      <ImageBackground
+        source={require('../../assets/pizzacont.png')}
+        style={styles.imagen}>
+        <ImageBackground
+          source={require('../../assets/fiorella.png')}
+          style={styles.imagen1}
+        />
+      </ImageBackground>
       <View style={styles.imagenmikeContainer}>
-        <Image source={require('../../assets/fiorella1.png')} style={styles.imagen} resizeMode="stretch" />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[styles.button, { height: 35 }]}
+            onPress={() => handleButtonPress('Boton 1')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentyone}>Descripción</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button2]}
+            onPress={() => handleButtonPress('Boton 2')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentytwo}>Calificación</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.button, styles.button3]}
+            onPress={() => handleButtonPress('Boton 3')}>
+            <Text style={styles.buttonLabel} onPress={goToTwentythree}>Politicas</Text>
+          </TouchableOpacity>
+        </View>
         <View style={styles.orangeRow}>
           <Text style={styles.subtotalText}></Text>
           <Text style={styles.priceText}>ABIERTO AHORA</Text>
@@ -81,7 +96,10 @@ export default function Twentyone({ navigation }) {
 </MapView>
         </View>
       </View>
-    </View> //CIERRA
+      <View style={{ marginTop: 20, marginLeft: 300, marginRight: 20 }}>
+        <Button title="Siguiente" onPress={goToTwentytwo} />
+      </View>
+    </View > //CIERRA
   );
 }
 
@@ -90,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: '#fc4b08',
+    backgroundColor: '#E26800',
     paddingTop: StatusBar.currentHeight,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -120,14 +138,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagen: {
-    width: '100%',
-    height: '32%',
-    resizeMode: 'contain',
+    width: '105%',
+    height: '50%',
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: 0,
   },
   imagen1: {
-    width: '95%',
-    height: '15%',
-    resizeMode: 'contain'
+    position: 'absolute',
+    bottom: 80,
+    width: '50%',
+    height: '50%',
+    resizeMode: 'cover',
+    marginLeft: 24,
   },
   bucancelar: {
     backgroundColor: 'orange',
@@ -156,6 +179,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 18,
     width: '100%',
+    top: -150,
   },
   subtotalText: {
     fontSize: 16,
@@ -171,6 +195,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     paddingHorizontal: 20,
+    top: -150,
   },
   paragraph: {
     fontSize: 14,
