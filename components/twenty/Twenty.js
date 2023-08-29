@@ -31,7 +31,7 @@ export default function Twenty({navigation}) {
 
       <View style={styles.inputContainer}>
         <View style={styles.inputmike}>
-          <Text style={styles.subTitle}>¿Dese eliminar su pedido?</Text>
+          <Text style={styles.subTitle}>¿Desea eliminar su pedido?</Text>
         </View>
         <View style={styles.inputmike}>
           <View style={styles.buttonContainer}>

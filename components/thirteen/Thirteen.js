@@ -6,12 +6,12 @@ import React, { useEffect, useState } from 'react';
 import Swiper from 'react-native-swiper';
 import { ScrollView } from 'react-native';
 import Cabezera from '../cabezera.js/Cabezera';
-export default function Thirteen({route, navigation }) {
-  const {claveid, cartCount} =route.params;
+export default function Thirteen({ navigation, route }) {
+  const {claveid} =route.params;
 
     const [restaurante, setRestaurante] = useState([]);
     //const [cartCount, setCartCount] = useState(0); // Inicializa el estado con 0
-
+    const [cartCount, setCartCount] = useState(0);
     useEffect(() => {
       // Actualiza el estado con el valor recibido desde el componente anterior
       if (route.params && route.params.cartCount) {
@@ -48,7 +48,7 @@ export default function Thirteen({route, navigation }) {
       <View style={styles.imagenmikeContainer}>
         {/* CENTROS COMERCIALES */}
         <View style={styles.carouselContainer}>
-          <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={3} paginationStyle={styles.paginationStyle}>
+          <Swiper style={styles.carousel} autoplay={true} autoplayTimeout={2} paginationStyle={styles.paginationStyle}>
             <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
             <Image source={require("../../assets/centroscomerciales.png")} style={styles.carouselImage} />
           </Swiper>

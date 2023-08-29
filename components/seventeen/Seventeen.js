@@ -3,10 +3,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ScrollView } from 'react-native';
+import Cabezera from '../cabezera.js/Cabezera';
 
 
 
-export default function Seventeen({ navigation }) {
+export default function Seventeen({ navigation, route }) {
  
   const handleButtonPress = () => {
 
@@ -14,14 +15,23 @@ export default function Seventeen({ navigation }) {
   };
 
   const goToEighteen = () => {
-    navigation.navigate('Dieciocho');
+    navigation.navigate('Veinte uno');
   }
   
   const [cartProductos, setCartProductos] = useState([]);
   const [productCounts, setProductCounts] = useState({});
   //const [total, setTotal] = useState(0); // Estado para almacenar el total actual
+  const [cartCount, setCartCount] = useState(0); // Inicializa el estado con 0
+  useEffect(() => {
+    // Actualiza el estado con el valor recibido desde el componente anterior
+    if (route.params && route.params.cartCount) {
+      setCartCount(route.params.cartCount);
+    }
+    //loadCartProducts();
+  }, [route.params]);
   
 
+  
 
   useEffect(() => {
   
@@ -81,21 +91,29 @@ export default function Seventeen({ navigation }) {
   };
   const total = calcularSubtotal();
 
-
+  const removeProduct = (productId) => {
+    const updatedCart = cartProductos.filter((product) => product.id !== productId);
+    setCartProductos(updatedCart);
+    setProductCounts((prevCounts) => {
+      const countsCopy = { ...prevCounts };
+      delete countsCopy[productId];
+      return countsCopy;
+    });
+  };
   
 
  
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fc4b08" barStyle="light-content" />
-      
+      {/* CENTROS COMERCIALES 
       <View style={styles.header}>
 
         <View style={styles.iconsContainer}>
           <Icon name="notifications-outline" size={30} color="white" style={styles.icon} />
           <View style={styles.cartContainer}>
             <Icon name="cart-outline" size={30} color="white" style={styles.icon} />
-            {cartCount > 0 && <View style={styles.cartBadge}><Text style={styles.cartBadgeText}>{cartCount}</Text></View>}
+            {cartCount > 0 && <View style={styles.cartBadge}><Text style={styles.cartBadgeText}></Text></View>}
           </View>
 
         </View>
@@ -105,8 +123,8 @@ export default function Seventeen({ navigation }) {
           <Icon name="ellipsis-vertical" size={30} color="white" style={styles.icon} />
         </View>
       </View>
-      
-      
+      */}
+        <Cabezera navigation={navigation} cartCount={cartCount} />
         <Image source={require('../../assets/pizzacont.png')} style={styles.image} resizeMode="stretch" />
 
       
@@ -133,7 +151,9 @@ export default function Seventeen({ navigation }) {
               <Text style={styles.productPrice}>$ {product.precio} c/u</Text>
             </View>
             <View style={styles.buttonsContainer}>
-              {/* Botón restar cantidad */}
+              {/* Botón restar cantidad
+              onPress={() => removeProduct(product.id)}
+               */}
               <TouchableOpacity style={styles.button} onPress={() => decrementProduct(product.id)}>
                 <Icon name="remove-circle" size={30} color="#C2D177" />
               </TouchableOpacity>
@@ -142,6 +162,9 @@ export default function Seventeen({ navigation }) {
               <TouchableOpacity style={styles.button} onPress={() => incrementProduct(product.id)}>
                 <Icon name="add-circle" size={30} color="#C2D177" />
               </TouchableOpacity>
+              <TouchableOpacity >
+              <Icon name="trash-outline" size={20} color="#000" style={styles.inputIcon} onPress={goToEighteen}  />
+            </TouchableOpacity>
             </View>
           </View>
         ))}
